@@ -1,11 +1,44 @@
 ---
-import Welcome from '../components/main_page.astro';
+import Main from '../components/main_page.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <Main>
+    <main style="padding: 3rem;">
+      <h1>Our Home Page</h1>
+      
+      <div class="div-container">
+        <div class="box box-1">Div 1</div>
+        <div class="box box-2">Div 2</div>
+        <div class="box box-3">Div 3</div>
+        <div class="box box-4">Div 4</div>
+        <div class="box box-5">Div 5</div>
+        <div class="box box-6">Div 6</div>
+        <div class="box box-7">Div 7</div>
+      </div>
+    </main>
+  </Main>
 </Layout>
+
+<style>
+
+  .div-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .box {
+    padding: 1.5rem;
+    background-color: #f0f2f5;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-weight: 500;
+
+		box-1{
+			
+		}
+  }
+</style>
