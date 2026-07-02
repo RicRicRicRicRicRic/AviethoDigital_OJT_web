@@ -1,16 +1,134 @@
 ---
 import Main from '../components/main_page.astro';
 import Layout from '../layouts/Layout.astro';
+import logoImage from '../assets/logo/ad_logo.png';
+import bg_bx1 from '../assets/background/homebx1.avif'
+import aviethoImage from '../assets/partners/avietho.png';
+import cupangImage from '../assets/partners/cupang.png';
+import landcoImage from '../assets/partners/Landco.png';
+import manOfTheWorldImage from '../assets/partners/man_of_the_world.png';
+import missWorldBatangasImage from '../assets/partners/miss_world_batangas.png';
+import r18Image from '../assets/partners/r-18.png';
+import mmBranding from '../assets/imgs/mm_branding.jpg';
+import mmMarketing from '../assets/imgs/mm_marketing.webp';
+import publicRelations from '../assets/imgs/public_relations.jpg';
+import webDev from '../assets/imgs/web_dev.webp';
+
+const partners = [
+  aviethoImage,
+  cupangImage,
+  landcoImage,
+  manOfTheWorldImage,
+  missWorldBatangasImage,
+  r18Image
+];
 ---
+
+<script>
+  const phrases = [
+    "Smart campaigns, powerful content, real results",
+    "Strategic ideas. Engaging stories. Measurable impact.",
+    "Bold strategies. Creative execution. Proven success.",
+    "Driven by insight. Designed to perform.",
+    "Data-powered plans. Story-led content. True influence.",
+    "Creative minds. Smart moves. Lasting results.",
+  ];
+  let currentIndex = 0;
+  const textElement = document.getElementById('fading-text');
+
+  if (textElement) {
+    setInterval(() => {
+      textElement.classList.remove('visible');
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % phrases.length;
+        textElement.textContent = phrases[currentIndex];
+        textElement.classList.add('visible');
+      }, 750); 
+    }, 4000);
+  }
+
+  const track = document.getElementById('slideshow-track');
+  const slides = document.querySelectorAll('.slide');
+  let currentSlide = 0;
+  if (track && slides.length > 0) {
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }, 3000);
+  }
+</script>
 
 <Layout>
   <Main>
-    <main style="padding: 3rem;">
-      <h1>Our Home Page</h1>
-      
+    <main>
       <div class="div-container">
-        <div class="box box-1">Div 1</div>
-        <div class="box box-2">Div 2</div>
+        <div class="box box-1" style={`background-image: url(${bg_bx1.src});`}>
+          <div class="glass-overlay">
+            <div class="left-section">          
+              <img src={logoImage.src} alt="company logo" class="logo" />
+              <p id="fading-text" class="fade-text visible">Smart campaigns, powerful content, real results</p>
+              <button class="cta-button">
+                <span>Get Started</span>
+              </button>
+            </div>
+
+            <div class="right-section">
+              <h2 class="section-title">Clients and Partners</h2>
+              <div class="slideshow-container">
+                <div class="slideshow-track" id="slideshow-track">
+                  {partners.map((partner) => (
+                    <div class="slide">
+                      <img src={partner.src} alt="Partner Logo" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box box-2">
+          <div class="sub-section section-1">
+            <div class="section-img-wrapper">
+              <img src={publicRelations.src} alt="Public Relations" />
+            </div>
+            <div class="section-content">
+              <h3>Public Relations</h3>
+              <p>Build an unshakeable reputation and command attention in your industry</p>
+            </div>
+          </div>
+          
+          <div class="sub-section section-2">
+            <div class="section-img-wrapper">
+              <img src={mmMarketing.src} alt="Digital & Social Media Marketing" />
+            </div>
+            <div class="section-content">
+              <h3>Digital & Social Media Marketing</h3>
+              <p>Engage your audience, expand your reach, and drive meaningful conversions</p>
+            </div>
+          </div>
+          
+          <div class="sub-section section-3">
+            <div class="section-img-wrapper">
+              <img src={mmBranding.src} alt="Multimedia & Branding" />
+            </div>
+            <div class="section-content">
+              <h3>Multimedia & Branding</h3>
+              <p>Captivate, communicate, and create an unforgettable brand experience</p>
+            </div>
+          </div>
+          
+          <div class="sub-section section-4">
+            <div class="section-img-wrapper">
+              <img src={webDev.src} alt="Web Development" />
+            </div>
+            <div class="section-content">
+              <h3>Web Development</h3>
+              <p>Your online presence, perfected for performance and maximum impact</p>
+            </div>
+          </div>
+        </div>
+
         <div class="box box-3">Div 3</div>
         <div class="box box-4">Div 4</div>
         <div class="box box-5">Div 5</div>
@@ -22,23 +140,225 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-
   .div-container {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-top: 2rem;
   }
 
   .box {
-    padding: 1.5rem;
+    padding: 1rem;
     background-color: #f0f2f5;
     border: 1px solid #ccc;
-    border-radius: 8px;
     font-weight: 500;
+    border-radius: 8px;
+  }
+  
+  .box-1 {
+    height: 800px;
+    padding: 0;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-		box-1{
-			
-		}
+    .glass-overlay {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    .left-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 4rem;
+      margin-top: -5rem;
+      flex: 1;
+
+      .logo {
+        width: 240px;
+        height: auto;
+        margin-bottom: -3.5rem;
+      }
+
+      .fade-text {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 2.5rem;
+        color: #ffaa66;
+        text-shadow: 0 0 10px rgba(255, 170, 102, 0.3);
+        opacity: 0;
+        transition: opacity 0.75s ease-in-out;
+
+        &.visible {
+          opacity: 1;
+        }
+      }
+
+      .cta-button {
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #ffffff;
+        background: linear-gradient(135deg, #ff7b00 0%, #ffaa66 100%);
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(255, 123, 0, 0.4);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(255, 123, 0, 0.6);
+        }
+
+        &:active {
+          transform: translateY(-1px);
+        }
+      }
+    }
+
+    .right-section {
+      width: 400px;
+      border-radius: 16px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-right: 6rem;
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin: 0 0 2rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .slideshow-container {
+        width: 280px;
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .slideshow-track {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .slide {
+        width: 100%;
+        min-width: 100%;
+        height: 100%;
+        position: relative;
+        flex-shrink: 0;
+
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          max-width: 90%;
+          max-height: 90%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  
+  .box-2 {
+    height: auto; 
+    min-height: 600px;
+    padding: 2.5rem;
+    background-color: #f8fafc;
+    display: flex;
+    flex-direction: row; 
+    gap: 1.5rem;
+
+    .sub-section {
+      flex: 1; 
+      display: flex;
+      flex-direction: column;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden; 
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e2e8f0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      
+      opacity: 0;
+      animation: boxPopup 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+
+
+      .section-img-wrapper {
+        flex: 3; 
+        height: 180px; 
+        overflow: hidden;
+        position: relative;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+
+
+      .section-content {
+        flex: 4;
+        padding: 1.75rem 1.5rem;
+
+        h3 {
+          margin: 0 0 0.75rem 0;
+          font-size: 1.25rem;
+          color: #0f172a;
+          font-weight: 600;
+        }
+
+        p {
+          margin: 0;
+          font-size: 0.95rem;
+          color: #475569;
+          line-height: 1.6;
+        }
+      }
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.08);
+      }
+    }
+
+    .section-1 { animation-delay: 0.15s; }
+    .section-2 { animation-delay: 0.35s; }
+    .section-3 { animation-delay: 0.55s; }
+    .section-4 { animation-delay: 0.75s; }
+  }
+
+  @keyframes boxPopup {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 </style>
