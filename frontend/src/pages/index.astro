@@ -1,11 +1,829 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Main from '../components/main_page.astro';
 import Layout from '../layouts/Layout.astro';
+import { IMAGES } from '../data/assets.js'; 
+import team_bg_bx4 from '../assets/background/team_bg.jpg';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const partners = IMAGES.partners;
 ---
 
+<script>
+  const phrases = [
+    "Smart campaigns, powerful content, real results",
+    "Strategic ideas. Engaging stories. Measurable impact.",
+    "Bold strategies. Creative execution. Proven success.",
+    "Driven by insight. Designed to perform.",
+    "Data-powered plans. Story-led content. True influence.",
+    "Creative minds. Smart moves. Lasting results.",
+  ];
+  let currentIndex = 0;
+  const textElement = document.getElementById('fading-text');
+
+  if (textElement) {
+    setInterval(() => {
+      textElement.classList.remove('visible');
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % phrases.length;
+        textElement.textContent = phrases[currentIndex];
+        textElement.classList.add('visible');
+      }, 750); 
+    }, 4000);
+  }
+
+  const track = document.getElementById('slideshow-track');
+  const slides = document.querySelectorAll('.slide');
+  let currentSlide = 0;
+  if (track && slides.length > 0) {
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }, 3000);
+  }
+
+  function initScrollAnimations() {
+    const box2 = document.querySelector('.box-2');
+    if (!box2) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const subSections = box2.querySelectorAll('.sub-section');
+        
+        if (entry.isIntersecting) {
+          subSections.forEach((section, index) => {
+            setTimeout(() => {
+              section.classList.add('visible');
+            }, index * 150); 
+          });
+        } else {
+          subSections.forEach((section) => {
+            section.classList.remove('visible');
+          });
+        }
+      });
+    }, {
+      threshold: 0.2,   
+      rootMargin: "0px 0px -50px 0px"
+    });
+    
+    observer.observe(box2);
+  }
+
+  function initBox3Slideshow() {
+    const track3 = document.getElementById('box3-track');
+    const buttons3 = document.querySelectorAll('.control-btn');
+
+    buttons3.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetIndex = btn.getAttribute('data-slide');
+        
+        if (track3) {
+          track3.style.transform = `translateX(-${Number(targetIndex) * 100}%)`;
+        }
+
+        buttons3.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initScrollAnimations();
+    initBox3Slideshow();
+  });
+</script>
+
 <Layout>
-	<Welcome />
+  <Main>
+    <main>
+      <div class="div-container">
+        <div class="box box-1" style={`background-image: url(${IMAGES.heroBg.src});`}>
+          <div class="glass-overlay">
+            <div class="left-section">          
+              <img src={IMAGES.logo.src} alt="company logo" class="logo" />
+              <p id="fading-text" class="fade-text visible">Smart campaigns, powerful content, real results</p>
+              <button class="cta-button">
+                <span>Get Started</span>
+              </button>
+            </div>
+
+            <div class="right-section">
+              <h2 class="section-title">Clients and Partners</h2>
+              <div class="slideshow-container">
+                <div class="slideshow-track" id="slideshow-track">
+                  {partners.map((partner) => (
+                    <div class="slide">
+                      <img src={partner.src} alt="Partner Logo" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box box-2">
+          <div class="sub-section section-1">
+            <div class="section-img-wrapper">
+              <img src={IMAGES.services.publicRelations.src} alt="Public Relations" />
+            </div>
+            <div class="section-content">
+              <h3>Public Relations</h3>
+              <p>Build an unshakeable reputation and command attention in your industry</p>
+            </div>
+          </div>
+          
+          <div class="sub-section section-2">
+            <div class="section-img-wrapper">
+              <img src={IMAGES.services.mmMarketing.src} alt="Digital & Social Media Marketing" />
+            </div>
+            <div class="section-content">
+              <h3>Digital & Social Media Marketing</h3>
+              <p>Engage your audience, expand your reach, and drive meaningful conversions</p>
+            </div>
+          </div>
+          
+          <div class="sub-section section-3">
+            <div class="section-img-wrapper">
+              <img src={IMAGES.services.mmBranding.src} alt="Multimedia & Branding" />
+            </div>
+            <div class="section-content">
+              <h3>Multimedia & Branding</h3>
+              <p>Captivate, communicate, and create an unforgettable brand experience</p>
+            </div>
+          </div>
+          
+          <div class="sub-section section-4">
+            <div class="section-img-wrapper">
+              <img src={IMAGES.services.webDev.src} alt="Web Development" />
+            </div>
+            <div class="section-content">
+              <h3>Web Development</h3>
+              <p>Your online presence, perfected for performance and maximum impact</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="box box-3" style={`background-image: url(${IMAGES.heroBg3.src});`}>
+          <div class="glass-overlay">
+            <div class="column column-left">
+              <h1>Complete Web Solutions</h1>
+              <p>From design to deployment, we provide comprehensive website development services that drive results.</p>
+            </div>
+            
+            <div class="column column-middle">
+              <div class="gif-wrapper">
+                <img src={IMAGES.gif_webDev?.src} alt="Web Development Animation" />
+              </div>
+            </div>
+            
+            <div class="column column-right">
+              <div class="slideshow-window">
+                <div class="slideshow-slider" id="box3-track">
+                  <div class="tech-slide">
+                    <h2>Frontend Development</h2>
+                    <p>Crafting ultra-responsive user interfaces with flawless interactions, speed optimizations, and clean architecture configurations using modern web tools.</p>
+                  </div>
+                  <div class="tech-slide">
+                    <h2>Backend Systems</h2>
+                    <p>Building scalable microservices, ironclad security infrastructures, and robust API logic layers designed to manage intensive data pipelines fluidly.</p>
+                  </div>
+                  <div class="tech-slide">
+                    <h2>Database Operations</h2>
+                    <p>Architecting highly performant schemas and intelligent caching layers ensuring data availability, integrity, and lightning-fast query execution handles.</p>
+                  </div>
+                  <div class="tech-slide">
+                    <h2>Production Tools</h2>
+                    <p>Deploying reliable automation configurations, continuous optimization monitors, and advanced analytical setups to keep architectures flying safely.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="slide-controls">
+                <button class="control-btn active" data-slide="0"><span>Frontend</span></button>
+                <button class="control-btn" data-slide="1"><span>Backend</span></button>
+                <button class="control-btn" data-slide="2"><span>Database</span></button>
+                <button class="control-btn" data-slide="3"><span>Tools</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box box-4">
+          <div class="team-member-card" style={`background-image: url(${team_bg_bx4.src});`}>
+            <div class="media-container">
+              <img src={IMAGES.team.rickie.src} alt="Rickie" />
+            </div>
+            <div class="profile-details">
+              <div class="initial-text">
+                <h3>Rickie Javier</h3>
+                <p>Public Relations Specialist and Social Media Manager</p>
+              </div>
+              <div class="extended-text">
+                <h3>Rickie Javier</h3>
+                <p class="role">Public Relations Specialist and Social Media Manager</p>
+                <p class="bio">Rickie Javier, Editor-in-Chief of Avietho Digital, has extensive experience in leading the team and strategizing content. Her skills are a product of learned experiences from studying Bachelor of Arts in Journalism, garnering exceptional communication skills and a sharp vision that oversees all aspects of content creation ensuring quality, consistency, and relevance across social media platforms.
+Rickie also exercises assertiveness and her social skills by collaborating with multiple personalities. Utilizing her honed expertise in the field of media, she immerses in field work as well as public relations. Beyond her contributions in the workplace, she finds fun and satisfaction in watching and reading mystery-thriller genres.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="team-member-card" style={`background-image: url(${team_bg_bx4.src});`}>
+            <div class="media-container">
+              <img src={IMAGES.team.jojo.src} alt="Jojo" />
+            </div>
+            <div class="profile-details">
+              <div class="initial-text">
+                <h3>Jojo Bayais</h3>
+                <p>Photographer</p>
+              </div>
+              <div class="extended-text">
+                <h3>Jojo Bayais</h3>
+                <p class="role">Photographer</p>
+                <p class="bio">Jojo Bayais is a talented photographer known for blending creative vision with seamless project management and performs smooth coordination with private subjects. With expertise in capturing stunning visuals and coordinating logistics, he ensures to deliver complete information and compelling imagery.
+In coordinating and producing visual outputs, Jojo combines artistic intuition with strong communication skills to bring ideas to life efficiently and creatively.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="team-member-card" style={`background-image: url(${team_bg_bx4.src});`}>
+            <div class="media-container">
+              <img src={IMAGES.team.migz.src} alt="Migz" />
+            </div>
+            <div class="profile-details">
+              <div class="initial-text">
+                <h3>Migz Junsay</h3>
+                <p>Creative Director</p>
+              </div>
+              <div class="extended-text">
+                <h3>Migz Junsay</h3>
+                <p class="role">Creative Director</p>
+                <p class="bio">Migz Junsay is a versatile Creative Director specializing in video editing, 3D animation, graphic design, camera operation, and photography. With a Master's Degree in Multimedia Arts and more than a decade of experience in the field, he transforms ideas into captivating visual experiences that engage and inspire across multiple platforms.
+
+Combining artistic creativity with technical expertise, Migz expertly guides projects from concept to final production, whether developing dynamic animations, crafting bold graphics, or capturing compelling imagery. Driven by innovation and a passion for visual storytelling, he is dedicated to pushing creative boundaries and delivering high-quality, memorable content that elevates brands and connects with audiences.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="team-member-card" style={`background-image: url(${team_bg_bx4.src});`}>
+            <div class="media-container">
+              <img src={IMAGES.team.mike.src} alt="Mike" />
+            </div>
+            <div class="profile-details">
+              <div class="initial-text">
+                <h3>Mike Manuel</h3>
+                <p>Video Grapher and Photographer</p>
+              </div>
+              <div class="extended-text">
+                <h3>Mike Manuel</h3>
+                <p class="role">Video Grapher and Photographer</p>
+                <p class="bio">Mike Manuel is a creative videographer and photographer known for turning ordinary moments into extraordinary visual stories. With a strong eye for composition and a deep understanding of light, movement, and emotion, he crafts compelling content that captures the essence of each subject.
+Specializing in both photography and cinematography, Mike works across a variety of styles — from portraits to creative videos. Every project is approached with passion, professionalism, and a desire to create something visually striking and meaningful.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box box-5">Div 5</div>
+        <div class="box box-6">Div 6</div>
+        <div class="box box-7">Div 7</div>
+      </div>
+    </main>
+  </Main>
 </Layout>
+
+<style>
+.div-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+.box {
+    padding: 1rem;
+    background-color: #f0f2f5;
+    border: 1px solid #ccc;
+    font-weight: 500;
+    border-radius: 8px;
+  }
+  
+.box-1 {
+    height: 800px;
+    padding: 0;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .glass-overlay {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    .left-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 6rem;
+      margin-top: -5rem;
+      flex: 1;
+
+      .logo {
+        width: 240px;
+        height: auto;
+        margin-bottom: -3.5rem;
+      }
+
+      .fade-text {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 2.5rem;
+        color: #ffaa66;
+        text-shadow: 0 0 10px rgba(255, 170, 102, 0.3);
+        opacity: 0;
+        transition: opacity 0.75s ease-in-out;
+        &.visible {
+          opacity: 1;
+        }
+      }
+
+      .cta-button {
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #ffffff;
+        background: linear-gradient(135deg, #ff7b00 0%, #ffaa66 100%);
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(255, 123, 0, 0.4);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(255, 123, 0, 0.6);
+        }
+
+        &:active {
+          transform: translateY(-1px);
+        }
+      }
+    }
+
+    .right-section {
+      width: 400px;
+      border-radius: 16px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-right: 8rem;
+      .section-title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin: 0 0 2rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .slideshow-container {
+        width: 280px;
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .slideshow-track {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .slide {
+        width: 100%;
+        min-width: 100%;
+        height: 100%;
+        position: relative;
+        flex-shrink: 0;
+
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          max-width: 90%;
+          max-height: 90%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+.box-2 {
+    height: auto;
+    min-height: 450px;
+    padding: 2.5rem;
+    background-color: #f8fafc;
+    display: flex;
+    flex-direction: row; 
+    gap: 1.5rem;
+    
+    .sub-section {
+      flex: 1; 
+      display: flex;
+      flex-direction: column;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e2e8f0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      
+      .section-img-wrapper {
+        flex: 3; 
+        height: 180px; 
+        overflow: hidden;
+        position: relative;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+
+      .section-content {
+        flex: 4;
+        padding: 1.75rem 1.5rem;
+
+        h3 {
+          margin: 0 0 0.75rem 0;
+          font-size: 1.25rem;
+          color: #0f172a;
+          font-weight: 600;
+        }
+
+        p {
+          margin: 0;
+          font-size: 0.95rem;
+          color: #475569;
+          line-height: 1.6;
+        }
+      }
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.08);
+      }
+    }
+    .sub-section.visible {
+      animation: boxPopup 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+  }
+  
+  @keyframes boxPopup {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+.box-3 {
+    width: 100%;
+    height: 750px; 
+    padding: 0;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+
+    .glass-overlay {
+      width: 100%;
+      height: 100%;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 1.5rem;
+      background: rgba(15, 23, 42, 0.5); 
+      backdrop-filter: blur(10px);
+      box-sizing: border-box;
+      overflow: hidden; 
+    }
+
+    .column {
+      flex: 1;
+      min-width: 0; 
+      min-height: 0; 
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .column-left {
+      justify-content: center;
+      padding: 2rem;
+      margin-top: -2rem;
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #ffaa66; 
+        text-shadow: 0 0 15px rgba(255, 170, 102, 0.6); 
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #ffd1a3; 
+        font-weight: 500;
+      }
+    }
+
+    .column-middle {
+      justify-content: center;
+      align-items: center;
+      
+      .gif-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        padding: 1rem; 
+
+        img {
+          width: 100%;
+          height: 100%;
+          max-width: 100%;
+          max-height: 100%; 
+          object-fit: contain;
+          object-position: center;
+        }
+      }
+    }
+
+    .column-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .slideshow-window {
+        width: 100%;
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: -3rem;
+      }
+      .slideshow-slider {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .tech-slide {
+        min-width: 100%;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem;
+        box-sizing: border-box;
+
+        h2 {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #ffffff;
+          margin-bottom: 1.25rem;
+          letter-spacing: -0.5px;
+        }
+
+        p {
+          font-size: 1.05rem;
+          line-height: 1.7;
+          color: #94a3b8;
+        }
+      }
+
+      .slide-controls {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        width: 100%;
+        margin-bottom: 8rem;
+      }
+
+      .control-btn {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 0.85rem;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+        span {
+          position: relative;
+          z-index: 2;
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #94a3b8;
+          transition: color 0.3s ease;
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, rgba(255, 123, 0, 0.15) 0%, rgba(255, 170, 102, 0.05) 100%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: 1;
+        }
+
+        &:hover {
+          border-color: rgba(255, 170, 102, 0.4);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(255, 123, 0, 0.15);
+          
+          span {
+            color: #ffffff;
+          }
+
+          &::before {
+            opacity: 1;
+          }
+        }
+
+        &.active {
+          background: linear-gradient(135deg, #ff7b00 0%, #ffaa66 100%);
+          border-color: transparent;
+          box-shadow: 0 0 20px rgba(255, 123, 0, 0.4);
+
+          span {
+            color: #ffffff;
+            font-weight: 700;
+          }
+
+          &:hover {
+            transform: none;
+            box-shadow: 0 0 25px rgba(255, 123, 0, 0.5);
+          }
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+.box-4 {
+  width: 100%;
+  height: auto;
+  min-height: 500px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  box-sizing: border-box;
+
+  .team-member-card {
+    flex: 1;
+    min-width: 0;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    .media-container {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+    }
+
+    .profile-details {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 34%;
+      padding: 1.25rem;
+      box-sizing: border-box;
+      background: #1e293b;
+      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.35);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      z-index: 2;
+      transition: height 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+
+      .initial-text, .extended-text {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+          font-size: 1.35rem;
+          font-weight: 700;
+          color: #ffffff;
+          margin: 0 0 0.5rem 0;
+          letter-spacing: -0.3px;
+        }
+
+        p {
+          font-size: 0.9rem;
+          line-height: 1.5;
+          color: #94a3b8;
+          margin: 0;
+        }
+      }
+
+      .initial-text {
+        opacity: 1;
+        transition: opacity 0.3s ease-in; 
+      }
+
+      .extended-text {
+        position: absolute;
+        top: 1.25rem;
+        left: 1.25rem;
+        width: calc(100% - 2.5rem);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.1s ease-out;
+
+        .role {
+          color: #ffaa66;
+          font-weight: 600;
+          font-size: 0.95rem;
+          margin-bottom: 1rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .bio {
+          color: #cbd5e1;
+          line-height: 1.6;
+        }
+      }
+    }
+
+    &:hover .profile-details {
+      height: 100%;
+
+      .initial-text {
+        opacity: 0;
+        transition: opacity 0.1s ease-out; 
+      }
+
+      .extended-text {
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity 0.25s ease-in; 
+      }
+    }
+  }
+}
+
+
+</style>
