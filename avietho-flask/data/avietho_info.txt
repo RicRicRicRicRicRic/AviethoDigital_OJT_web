@@ -1,0 +1,107 @@
+AVIETHO DIGITAL 
+
+COMPANY OVERVIEW
+
+Company Name: Avietho Digital
+
+Websites: https://aviethodigital.com/
+https://marketing.aviethodigital.com/
+
+Industry: - Digital Media - Digital Marketing - Public Relations -
+Multimedia Production - Web Development - News Publishing
+
+Headquarters: Admiralty Building 1101 Alabang-Zapote Road Madrigal
+Business Park Ayala Alabang Muntinlupa City, Philippines
+
+Founded: 2018
+
+ABOUT
+
+Avietho Digital is an independent Filipino digital media network and
+digital marketing agency that combines journalism, branding, public
+relations, multimedia production, social media marketing, and web
+development.
+
+Slogan: “Innovate, Create and Connect.”
+
+SERVICES
+
+-   Public Relations
+-   Digital Marketing
+-   Social Media Marketing
+-   Website Development
+-   SEO
+-   Branding
+-   Graphic Design
+-   Photography
+-   Videography
+-   Live Streaming
+-   Video Editing
+-   Content Creation
+-   Online Reputation Management
+-   Influencer Marketing
+
+TECHNOLOGY STACK
+
+Frontend: React Next.js Tailwind CSS TypeScript
+
+Backend: Node.js Python Java PHP
+
+Database: PostgreSQL MongoDB
+
+Cloud: AWS Vercel
+
+Tools: WordPress Shopify Figma Google Analytics
+
+TEAM
+
+Rickie Javier - Editor-in-Chief - Public Relations Specialist - Social
+Media Manager
+
+Migz Junsay - Creative Director
+
+Jojo Bayais - Photographer
+
+Mike Manuel - Videographer & Photographer
+
+CLIENTS
+
+-   Businesses
+-   Government Agencies
+-   LGUs
+-   Organizations
+-   Beauty Pageants
+-   Tourism Campaigns
+-   Corporate Brands
+
+SOCIAL LINKS
+
+Website: https://aviethodigital.com/
+
+Marketing: https://marketing.aviethodigital.com/
+
+LinkedIn: https://ph.linkedin.com/in/avietho-digital-806078360
+
+Facebook: https://www.facebook.com/AviethoDigital
+
+Instagram: https://www.instagram.com/aviethodigital
+
+YouTube: https://www.youtube.com/@AviethoDigital
+
+TikTok: https://www.tiktok.com/@aviethodigital
+
+X: https://x.com/aviethodigital
+
+CONTACT
+
+Phone: +63 9783 1987
+
+Email: marketing.avietho@gmail.com aviethodigital@gmail.com
+
+SUMMARY
+
+Avietho Digital is a Philippine-based digital media network and
+full-service digital marketing agency offering journalism, public
+relations, branding, multimedia production, social media management, and
+website development using modern technologies including React, Next.js,
+Node.js, Python, PostgreSQL, MongoDB, AWS, and WordPress.
