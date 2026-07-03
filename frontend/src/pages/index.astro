@@ -43,7 +43,6 @@ const partners = IMAGES.partners;
   function initScrollAnimations() {
     const box2 = document.querySelector('.box-2');
     if (!box2) return;
-    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const subSections = box2.querySelectorAll('.sub-section');
@@ -64,14 +63,12 @@ const partners = IMAGES.partners;
       threshold: 0.2,   
       rootMargin: "0px 0px -50px 0px"
     });
-    
     observer.observe(box2);
   }
 
   function initBox3Slideshow() {
     const track3 = document.getElementById('box3-track');
     const buttons3 = document.querySelectorAll('.control-btn');
-
     buttons3.forEach((btn) => {
       btn.addEventListener('click', () => {
         const targetIndex = btn.getAttribute('data-slide');
@@ -108,6 +105,7 @@ const partners = IMAGES.partners;
 
             <div class="right-section">
               <h2 class="section-title">Clients and Partners</h2>
+            
               <div class="slideshow-container">
                 <div class="slideshow-track" id="slideshow-track">
                   {partners.map((partner) => (
@@ -221,8 +219,7 @@ const partners = IMAGES.partners;
               <div class="extended-text">
                 <h3>Rickie Javier</h3>
                 <p class="role">Public Relations Specialist and Social Media Manager</p>
-                <p class="bio">Rickie Javier, Editor-in-Chief of Avietho Digital, has extensive experience in leading the team and strategizing content. Her skills are a product of learned experiences from studying Bachelor of Arts in Journalism, garnering exceptional communication skills and a sharp vision that oversees all aspects of content creation ensuring quality, consistency, and relevance across social media platforms.
-Rickie also exercises assertiveness and her social skills by collaborating with multiple personalities. Utilizing her honed expertise in the field of media, she immerses in field work as well as public relations. Beyond her contributions in the workplace, she finds fun and satisfaction in watching and reading mystery-thriller genres.</p>
+                <p class="bio">Rickie Javier, Editor-in-Chief of Avietho Digital, has extensive experience in leading the team and strategizing content. Her skills are a product of learned experiences from studying Bachelor of Arts in Journalism, garnering exceptional communication skills and a sharp vision that oversees all aspects of content creation ensuring quality, consistency, and relevance across social media platforms. Rickie also exercises assertiveness and her social skills by collaborating with multiple personalities. Utilizing her honed expertise in the field of media, she immerses in field work as well as public relations. Beyond her contributions in the workplace, she finds fun and satisfaction in watching and reading mystery-thriller genres.</p>
               </div>
             </div>
           </div>
@@ -239,8 +236,7 @@ Rickie also exercises assertiveness and her social skills by collaborating with 
               <div class="extended-text">
                 <h3>Jojo Bayais</h3>
                 <p class="role">Photographer</p>
-                <p class="bio">Jojo Bayais is a talented photographer known for blending creative vision with seamless project management and performs smooth coordination with private subjects. With expertise in capturing stunning visuals and coordinating logistics, he ensures to deliver complete information and compelling imagery.
-In coordinating and producing visual outputs, Jojo combines artistic intuition with strong communication skills to bring ideas to life efficiently and creatively.</p>
+                <p class="bio">Jojo Bayais is a talented photographer known for blending creative vision with seamless project management and performs smooth coordination with private subjects. With expertise in capturing stunning visuals and coordinating logistics, he ensures to deliver complete information and compelling imagery. In coordinating and producing visual outputs, Jojo combines artistic intuition with strong communication skills to bring ideas to life efficiently and creatively.</p>
               </div>
             </div>
           </div>
@@ -257,9 +253,7 @@ In coordinating and producing visual outputs, Jojo combines artistic intuition w
               <div class="extended-text">
                 <h3>Migz Junsay</h3>
                 <p class="role">Creative Director</p>
-                <p class="bio">Migz Junsay is a versatile Creative Director specializing in video editing, 3D animation, graphic design, camera operation, and photography. With a Master's Degree in Multimedia Arts and more than a decade of experience in the field, he transforms ideas into captivating visual experiences that engage and inspire across multiple platforms.
-
-Combining artistic creativity with technical expertise, Migz expertly guides projects from concept to final production, whether developing dynamic animations, crafting bold graphics, or capturing compelling imagery. Driven by innovation and a passion for visual storytelling, he is dedicated to pushing creative boundaries and delivering high-quality, memorable content that elevates brands and connects with audiences.</p>
+                <p class="bio">Migz Junsay is a versatile Creative Director specializing in video editing, 3D animation, graphic design, camera operation, and photography. With a Master's Degree in Multimedia Arts and more than a decade of experience in the field, he transforms ideas into captivating visual experiences that engage and inspire across multiple platforms. Combining artistic creativity with technical expertise, Migz expertly guides projects from concept to final production, whether developing dynamic animations, crafting bold graphics, or capturing compelling imagery. Driven by innovation and a passion for visual storytelling, he is dedicated to pushing creative boundaries and delivering high-quality, memorable content that elevates brands and connects with audiences.</p>
               </div>
             </div>
           </div>
@@ -276,14 +270,38 @@ Combining artistic creativity with technical expertise, Migz expertly guides pro
               <div class="extended-text">
                 <h3>Mike Manuel</h3>
                 <p class="role">Video Grapher and Photographer</p>
-                <p class="bio">Mike Manuel is a creative videographer and photographer known for turning ordinary moments into extraordinary visual stories. With a strong eye for composition and a deep understanding of light, movement, and emotion, he crafts compelling content that captures the essence of each subject.
-Specializing in both photography and cinematography, Mike works across a variety of styles — from portraits to creative videos. Every project is approached with passion, professionalism, and a desire to create something visually striking and meaningful.</p>
+                <p class="bio">Mike Manuel is a creative videographer and photographer known for turning ordinary moments into extraordinary visual stories. With a strong eye for composition and a deep understanding of light, movement, and emotion, he crafts compelling content that captures the essence of each subject. Specializing in both photography and cinematography, Mike works across a variety of styles — from portraits to creative videos. Every project is approached with passion, professionalism, and a desire to create something visually striking and meaningful.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="box box-5">Div 5</div>
+        <div class="box box-5">
+          <div class="left-section">
+            <div class="content-wrapper">
+              <div class="Impact-label">Innovate, Create and Connect</div>
+              <h2>SOCIAL MEDIA <span>IMPACT</span></h2>
+              <p>We craft scroll-stopping stories that turn attention into action — building community, sparking conversation, and driving measurable growth for your brand</p>
+              
+              <div class="stats-container">
+                <div class="stat-item">
+                  <span class="stat-number">46,000+</span>
+                  <span class="stat-label">Facebook Followers</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">100+</span>
+                  <span class="stat-label">Projects Done</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">50+</span>
+                  <span class="stat-label">Happy Clients</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right-section" style={`background-image: url(${IMAGES.heroBg5?.src});`}></div>
+        </div>
+
         <div class="box box-6">Div 6</div>
         <div class="box box-7">Div 7</div>
       </div>
@@ -295,7 +313,8 @@ Specializing in both photography and cinematography, Mike works across a variety
 .div-container {
     display: flex;
     flex-direction: column;
-  }
+    font-family: 'Poppins', 'Montserrat', 'Outfit', 'Urbanist', system-ui, -apple-system, sans-serif;
+}
 
 .box {
     padding: 1rem;
@@ -303,7 +322,7 @@ Specializing in both photography and cinematography, Mike works across a variety
     border: 1px solid #ccc;
     font-weight: 500;
     border-radius: 8px;
-  }
+}
   
 .box-1 {
     height: 800px;
@@ -384,6 +403,7 @@ Specializing in both photography and cinematography, Mike works across a variety
       overflow: hidden;
       flex-shrink: 0;
       margin-right: 8rem;
+
       .section-title {
         font-size: 2rem;
         font-weight: 600;
@@ -437,7 +457,7 @@ Specializing in both photography and cinematography, Mike works across a variety
     display: flex;
     flex-direction: row; 
     gap: 1.5rem;
-    
+
     .sub-section {
       flex: 1; 
       display: flex;
@@ -451,7 +471,7 @@ Specializing in both photography and cinematography, Mike works across a variety
       
       opacity: 0;
       transform: translateY(40px) scale(0.95);
-      
+
       .section-img-wrapper {
         flex: 3; 
         height: 180px; 
@@ -526,7 +546,7 @@ Specializing in both photography and cinematography, Mike works across a variety
       background: rgba(15, 23, 42, 0.5); 
       backdrop-filter: blur(10px);
       box-sizing: border-box;
-      overflow: hidden; 
+      overflow: hidden;
     }
 
     .column {
@@ -549,7 +569,7 @@ Specializing in both photography and cinematography, Mike works across a variety
         font-weight: 700;
         margin-bottom: 1rem;
         color: #ffaa66; 
-        text-shadow: 0 0 15px rgba(255, 170, 102, 0.6); 
+        text-shadow: 0 0 15px rgba(255, 170, 102, 0.6);
       }
 
       p {
@@ -611,7 +631,6 @@ Specializing in both photography and cinematography, Mike works across a variety
         justify-content: center;
         padding: 1rem;
         box-sizing: border-box;
-
         h2 {
           font-size: 2rem;
           font-weight: 700;
@@ -670,7 +689,6 @@ Specializing in both photography and cinematography, Mike works across a variety
           border-color: rgba(255, 170, 102, 0.4);
           transform: translateY(-2px);
           box-shadow: 0 4px 12px rgba(255, 123, 0, 0.15);
-          
           span {
             color: #ffffff;
           }
@@ -684,7 +702,6 @@ Specializing in both photography and cinematography, Mike works across a variety
           background: linear-gradient(135deg, #ff7b00 0%, #ffaa66 100%);
           border-color: transparent;
           box-shadow: 0 0 20px rgba(255, 123, 0, 0.4);
-
           span {
             color: #ffffff;
             font-weight: 700;
@@ -791,7 +808,6 @@ Specializing in both photography and cinematography, Mike works across a variety
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.1s ease-out;
-
         .role {
           color: #ffaa66;
           font-weight: 600;
@@ -810,10 +826,9 @@ Specializing in both photography and cinematography, Mike works across a variety
 
     &:hover .profile-details {
       height: 100%;
-
       .initial-text {
         opacity: 0;
-        transition: opacity 0.1s ease-out; 
+        transition: opacity 0.1s ease-out;
       }
 
       .extended-text {
@@ -821,6 +836,121 @@ Specializing in both photography and cinematography, Mike works across a variety
         pointer-events: auto;
         transition: opacity 0.25s ease-in; 
       }
+    }
+  }
+}
+
+.box-5 {
+  width: 100%;
+  min-height: 650px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  gap: 0;
+  padding: 0;
+
+  .left-section {
+    flex: 0 0 65%;
+    width: 65%;
+    margin-right: -10%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: #252728; 
+    position: relative;
+    z-index: 2;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 100%);
+    
+    .content-wrapper {
+      padding: 3rem;
+      box-sizing: border-box;
+      margin-right: 10rem;
+
+      /* Metrics Section Styling */
+      .stats-container {
+        display: flex;
+        gap: 3rem;
+        margin-top: 3rem;
+
+        .stat-item {
+          display: flex;
+          flex-direction: column;
+          
+          .stat-number {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1;
+            margin-bottom: 0.95rem;
+          }
+          
+          .stat-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffaa66;
+            font-weight: 600;
+          }
+        }
+      }
+
+      .Impact-label {
+        /* ... existing styles maintained ... */
+        display: inline-block;
+        width: fit-content;
+        padding: 0.5rem 1.25rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: #ffaa66;
+        text-transform: uppercase;
+        border-radius: 50px;
+        margin-bottom: 1.5rem;
+        position: relative;
+        overflow: hidden;
+        background: rgba(255, 170, 102, 0.06);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 170, 102, 0.2);
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -150%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55) 50%, transparent);
+          transform: skewX(-25deg);
+        }
+        &:hover::before { left: 150%; transition: left 0.75s ease-in-out; }
+      }
+      
+      h2 {
+        color: #ffffff;
+        margin-top: 0;
+        font-size: 2.5rem;
+        span { color: #ffaa66; }
+      }
+      p { color: #94a3b8; }
+    }
+  }
+
+  .right-section {
+    flex: 0 0 45%;
+    width: 45%;
+    background-size: cover; 
+    background-position: center;
+    position: relative;
+    z-index: 1;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(37, 39, 40, 0.2); /* Slight tint to match left section */
+      z-index: 2;
     }
   }
 }

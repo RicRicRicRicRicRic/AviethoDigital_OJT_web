@@ -2,6 +2,7 @@
 import logoImage from '../assets/logo/ad_logo.png';
 import bg_bx1 from '../assets/background/homebx1.avif';
 import bg_bx3 from '../assets/background/home_bx3.jpg';
+import bg_bx5 from '../assets/imgs/fb_page.png';
 import team_bg_bx4 from '../assets/background/team_bg.jpg';
 
 // Partners
@@ -29,6 +30,7 @@ export const IMAGES = {
   logo: logoImage,
   heroBg: bg_bx1,
   heroBg3: bg_bx3,
+  heroBg5: bg_bx5,
   teamBgbx4: team_bg_bx4,
   partners: [
     aviethoImage,
