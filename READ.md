@@ -11,6 +11,7 @@
 ### 2.1. Navigate to the FRONTEND
 
 - cd frontend
+- npx astro add react - for ai chatbox
 - npm run dev
 
 ## 3. Click Local url network
