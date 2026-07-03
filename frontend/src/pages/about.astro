@@ -1,13 +1,977 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Main from '../components/main_page.astro';
+import { IMAGES } from '../data/assets.js'; 
 ---
+
+<style is:global>
+  /* ========== FONTS ========== */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  /* ========== ROOT VARIABLES ========== */
+  :root {
+    --bg-primary: #0a0a12;
+    --bg-secondary: #14141f;
+    --bg-card: #1a1a2e;
+    --bg-card-hover: #22223a;
+    --accent-primary: #ff6b00;
+    --accent-secondary: #ff8c42;
+    --accent-glow: rgba(255, 107, 0, 0.3);
+    --accent-glow-strong: rgba(255, 107, 0, 0.6);
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0c8;
+    --text-muted: #7a7a9a;
+    --border-color: #2a2a42;
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --base-font-size: 20px;
+  }
+
+  /* ========== GLOBAL RESET ========== */
+  .parallax-root {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1rem; 
+    line-height: 1.8;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ========== HERO SECTION ========== */
+  .about-hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--bg-primary);
+    padding: 80px 0 60px;
+  }
+
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(255, 107, 0, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(255, 107, 0, 0.05) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(255, 107, 0, 0.06) 0%, transparent 40%),
+      var(--bg-primary);
+  }
+
+  /* Floating Shapes */
+  .floating-shapes {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.06;
+    animation: floatShape 20s ease-in-out infinite alternate;
+  }
+
+  .shape-1 {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    right: -100px;
+    background: var(--accent-primary);
+    animation-delay: 0s;
+  }
+
+  .shape-2 {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    left: -50px;
+    background: #ff8c42;
+    animation-delay: -5s;
+  }
+
+  .shape-3 {
+    width: 200px;
+    height: 200px;
+    top: 30%;
+    left: 10%;
+    background: #ff4400;
+    animation-delay: -10s;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+
+  .shape-4 {
+    width: 150px;
+    height: 150px;
+    bottom: 20%;
+    right: 15%;
+    background: #ffaa44;
+    animation-delay: -15s;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+
+  .shape-5 {
+    width: 100px;
+    height: 100px;
+    top: 60%;
+    left: 50%;
+    background: var(--accent-primary);
+    animation-delay: -7s;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+
+  @keyframes floatShape {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    33% { transform: translate(30px, -40px) scale(1.1) rotate(5deg); }
+    66% { transform: translate(-20px, 30px) scale(0.9) rotate(-3deg); }
+    100% { transform: translate(10px, -20px) scale(1.05) rotate(8deg); }
+  }
+
+  /* Hero Content */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 107, 0, 0.12);
+    border: 1px solid rgba(255, 107, 0, 0.25);
+    border-radius: 100px;
+    padding: 6px 18px;
+    margin-bottom: 50px;
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--accent-secondary);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-logo {
+    margin-bottom: 20px;
+  }
+
+  .digital-logo {
+    height: 180px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  .title-line {
+    display: block;
+  }
+
+  .title-line.highlight {
+    background: linear-gradient(135deg, var(--accent-primary), #ffaa44);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 60px rgba(255, 107, 0, 0.2);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 48px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  /* Hero Stats */
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff, var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  /* ========== STORY SECTION ========== */
+  .about-story {
+    padding: 80px 0 100px;
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-story::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    opacity: 0.3;
+  }
+
+  .story-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* Section Header */
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .section-badge {
+    display: inline-block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent-primary);
+    background: rgba(255, 107, 0, 0.1);
+    padding: 4px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 107, 0, 0.15);
+    margin-bottom: 12px;
+  }
+
+  .section-header h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  /* Timeline */
+  .story-timeline {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 32px;
+  }
+
+  .story-timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent-primary), rgba(255, 107, 0, 0.1));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+    padding-left: 20px;
+  }
+
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .timeline-marker {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    background: rgba(255, 107, 0, 0.12);
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 107, 0, 0.15);
+    margin-bottom: 6px;
+  }
+
+  .timeline-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: var(--text-primary);
+  }
+
+  .timeline-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Highlight Box */
+  .story-highlight {
+    margin: 32px 0;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.08), rgba(255, 107, 0, 0.02));
+    border-left: 4px solid var(--accent-primary);
+    padding: 20px 24px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .highlight-box h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+  }
+
+  .highlight-box p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .highlight-box strong {
+    color: var(--text-primary);
+  }
+
+  .story-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 0 0 16px 0;
+  }
+
+  .story-description:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Story Visual */
+  .story-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    height: 160%;
+  }
+
+  .visual-element {
+    text-align: center;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 40px 32px;
+    border: 1px solid var(--border-color);
+    width: 50%;
+    transition: var(--transition);
+  }
+
+  .visual-element:hover {
+    border-color: rgba(255, 107, 0, 0.3);
+    box-shadow: 0 0 40px rgba(255, 107, 0, 0.05);
+  }
+
+  .logo-animation {
+    margin-bottom: 24px;
+  }
+
+  .digital-logo-glow {
+    height: 80px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { filter: brightness(0) invert(1) drop-shadow(0 0 20px rgba(255, 107, 0, 0.1)); }
+    50% { filter: brightness(0) invert(1) drop-shadow(0 0 40px rgba(255, 107, 0, 0.3)); }
+  }
+
+  .founders-info {
+    margin-top: 20px;
+  }
+
+  .founder-card {
+    display: inline-block;
+    background: var(--bg-secondary);
+    padding: 20px 50px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+  }
+
+  .founder-avatar {
+    font-size: 2.4rem;
+    margin-bottom: 4px;
+  }
+
+  .founder-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .founder-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .logo-meaning {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 16px 0 0 0;
+    text-align: center;
+  }
+
+  /* ========== VALUES SECTION ========== */
+  .about-values {
+    padding: 80px 0 100px;
+    background: var(--bg-primary);
+  }
+
+  .about-values .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .value-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 32px 28px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .value-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 107, 0, 0.3);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3), 0 0 60px rgba(255, 107, 0, 0.04);
+    background: var(--bg-card-hover);
+  }
+
+  @keyframes floatIcon {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-12px); } /* Moves up */
+    100% { transform: translateY(0); }     /* Returns to start */
+  }
+
+  .value-icon {
+    font-size: 2.4rem;
+    align-self: center;
+    animation: floatIcon 3s ease-in-out infinite; /* 3s = slow & smooth */
+  }
+
+  .value-content h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: var(--text-primary);
+  }
+
+  .value-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+  }
+
+  .value-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .feature-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 4px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--border-color);
+  }
+
+  /* ========== SERVICES SECTION ========== */
+  .about-services {
+    padding: 80px 0 100px;
+    background: var(--bg-secondary);
+    position: relative;
+  }
+
+  .about-services::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    opacity: 0.2;
+  }
+
+  .about-services h2 {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 48px;
+    letter-spacing: -0.02em;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  .service-card {
+    text-align: center;
+    background: var(--bg-card);
+    padding: 32px 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 107, 0, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .service-icon {
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .service-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ========== CLIENTS SECTION ========== */
+  .about-clients {
+    padding: 80px 0 100px;
+    background: var(--bg-primary);
+  }
+
+  .about-clients h2 {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 48px;
+    letter-spacing: -0.02em;
+  }
+
+  .clients-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .client-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+  }
+
+  .client-category {
+    background: var(--bg-card);
+    padding: 28px 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: var(--transition);
+  }
+
+  .client-category:hover {
+    border-color: rgba(255, 107, 0, 0.2);
+    transform: scale(1.02);
+  }
+
+  .client-category h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: var(--accent-secondary);
+  }
+
+  .client-category p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 992px) {
+    .story-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .story-visual {
+      order: -1;
+    }
+
+    .hero-stats {
+      gap: 28px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-hero {
+      min-height: 70vh;
+      padding: 60px 0 40px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 10vw, 3.2rem);
+    }
+
+    .hero-stats {
+      gap: 20px;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+    }
+
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .client-categories {
+      grid-template-columns: 1fr;
+    }
+
+    .story-timeline {
+      padding-left: 20px;
+    }
+
+    .timeline-item {
+      padding-left: 12px;
+    }
+
+    .highlight-box {
+      padding: 16px 18px;
+    }
+
+    .visual-element {
+      padding: 24px 16px;
+    }
+
+    .digital-logo-glow {
+      height: 60px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .container {
+      padding: 0 16px;
+    }
+
+    .about-hero,
+    .about-story,
+    .about-values,
+    .about-services,
+    .about-clients {
+      padding: 60px 0 70px;
+    }
+  }
+</style>
 
 <Layout>
   <Main>
-    <main style="padding: 3rem;">
-      <h1>Our About Page</h1>
-      <p>Welcome to the about page content!</p>
+    <main class="parallax-root">
+      <!-- Hero Section -->
+      <div class="about-hero">
+        <div class="hero-background">
+          <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span>Since 2018</span>
+            </div>
+            <div class="hero-logo">
+              <img src={IMAGES.logo.src} alt="Digital Marketing Logo" class="digital-logo" />
+            </div>
+            <h1 class="hero-title">
+              <span class="title-line">About</span>
+              <span class="title-line highlight">Digital Marketing</span>
+            </h1>
+            <p class="hero-subtitle">Empowering brands through innovative digital solutions</p>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <span class="stat-number">5+</span>
+                <span class="stat-label">Years Experience</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">100+</span>
+                <span class="stat-label">Projects Completed</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Happy Clients</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story Section -->
+      <section class="about-story">
+        <div class="container">
+          <div class="story-content">
+            <div class="story-text">
+              <div class="section-header">
+                <div class="section-badge">Our Journey</div>
+                <h2>Our Story</h2>
+              </div>
+              <div class="story-timeline">
+                <div class="timeline-item">
+                  <div class="timeline-marker">2018</div>
+                  <div class="timeline-content">
+                    <h3>Foundation</h3>
+                    <p>Avietho Digital Marketing was established in Muntinlupa City, Philippines, marking the beginning of our digital journey.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-marker">2020</div>
+                  <div class="timeline-content">
+                    <h3>Growth &amp; Expansion</h3>
+                    <p>Expanded our services to include political campaigns and government agency partnerships.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-marker">2023</div>
+                  <div class="timeline-content">
+                    <h3>Innovation</h3>
+                    <p>Launched comprehensive multimedia services and advanced digital solutions.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="story-highlight">
+                <div class="highlight-box">
+                  <h3>The Name "Avietho"</h3>
+                  <p>The name holds a special significance, derived from the first two letters of the names of its four founders—<strong>"AV-IE-TH-O"</strong>—siblings of Milarosa and George.</p>
+                </div>
+              </div>
+              <p class="story-description">
+                We empower diverse clients, including political figures, government agencies, and businesses, with innovative and adaptable strategies. We specialize in providing comprehensive multimedia services, creating compelling videos, graphics, and interactive content that effectively enhances brand messaging.
+              </p>
+              <p class="story-description">
+                Our dedicated team utilizes strategic planning, social listening, and insightful media analysis to craft impactful campaigns specifically tailored to the dynamic Philippine market.
+              </p>
+            </div>
+            <div class="story-visual">
+              <div class="visual-element">
+                <div class="logo-animation">
+                  <img src={IMAGES.logo.src} alt="Digital Marketing Logo" class="digital-logo-glow" />
+                </div>
+                <div class="founders-info">
+                  <div class="founder-card">
+                    <div class="founder-avatar">👥</div>
+                    <h4>Milarosa &amp; George</h4>
+                    <p>Founding Siblings</p>
+                  </div>
+                </div>
+                <p class="logo-meaning">Founded by siblings of Milarosa and George</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Values Section -->
+      <section class="about-values">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-badge">Core Principles</div>
+            <h2>Our Values</h2>
+          </div>
+          <div class="values-grid">
+            <div class="value-card">
+              <div class="value-icon">🎯</div>
+              <div class="value-content">
+                <h3>Strategic Excellence</h3>
+                <p>We craft data-driven strategies that deliver measurable results for our clients.</p>
+                <div class="value-features">
+                  <span class="feature-tag">Analytics</span>
+                  <span class="feature-tag">ROI Focus</span>
+                  <span class="feature-tag">Performance</span>
+                </div>
+              </div>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">💡</div>
+              <div class="value-content">
+                <h3>Innovation</h3>
+                <p>Constantly evolving with the latest digital trends and technologies.</p>
+                <div class="value-features">
+                  <span class="feature-tag">Latest Tech</span>
+                  <span class="feature-tag">Creative Solutions</span>
+                  <span class="feature-tag">Future-Ready</span>
+                </div>
+              </div>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">🤝</div>
+              <div class="value-content">
+                <h3>Partnership</h3>
+                <p>Building long-term relationships based on trust and mutual success.</p>
+                <div class="value-features">
+                  <span class="feature-tag">Trust</span>
+                  <span class="feature-tag">Collaboration</span>
+                  <span class="feature-tag">Support</span>
+                </div>
+              </div>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">🇵🇭</div>
+              <div class="value-content">
+                <h3>Local Expertise</h3>
+                <p>Deep understanding of the Philippine market and cultural nuances.</p>
+                <div class="value-features">
+                  <span class="feature-tag">Local Market</span>
+                  <span class="feature-tag">Cultural Insight</span>
+                  <span class="feature-tag">Philippine Focus</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section class="about-services">
+        <div class="container">
+          <h2>What We Do</h2>
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-icon">📱</div>
+              <h3>Digital PR</h3>
+              <p>Online media relations, influencer marketing, and reputation management.</p>
+            </div>
+            <div class="service-card">
+              <div class="service-icon">📊</div>
+              <h3>Social Media</h3>
+              <p>Strategic social media management and community engagement.</p>
+            </div>
+            <div class="service-card">
+              <div class="service-icon">🎬</div>
+              <h3>Video Production</h3>
+              <p>Professional video content creation and live streaming services.</p>
+            </div>
+            <div class="service-card">
+              <div class="service-icon">💻</div>
+              <h3>Web Development</h3>
+              <p>Custom website development and digital solutions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Clients Section -->
+      <section class="about-clients">
+        <div class="container">
+          <h2>Our Clients</h2>
+          <div class="clients-content">
+            <div class="client-categories">
+              <div class="client-category">
+                <h3>Political Figures</h3>
+                <p>Strategic digital campaigns for political leaders and candidates.</p>
+              </div>
+              <div class="client-category">
+                <h3>Government Agencies</h3>
+                <p>Digital transformation and public communication services.</p>
+              </div>
+              <div class="client-category">
+                <h3>Businesses</h3>
+                <p>Comprehensive digital marketing solutions for all business sizes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   </Main>
 </Layout>
