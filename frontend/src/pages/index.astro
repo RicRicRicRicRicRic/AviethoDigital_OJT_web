@@ -93,7 +93,7 @@ const partners = IMAGES.partners;
     let currentIndex = 0;
     let isReversing = false;
     const forwardDuration = 4500;   
-    const reverseDuration = 650;   
+    const reverseDuration = 650;    
 
     function goToSlide(index: number, instant = false) {
       if (!track) return;
@@ -109,8 +109,9 @@ const partners = IMAGES.partners;
       currentIndex = (currentIndex + 1) % totalSlides; 
 
       if (currentIndex === 0 && !isReversing) {
+        // Finished forward cycle → start fast reverse
         isReversing = true;
-        setTimeout(() => reverseBack(), 600);
+        setTimeout(() => reverseBack(), 800);
         return;
       }
       goToSlide(currentIndex);
@@ -120,7 +121,6 @@ const partners = IMAGES.partners;
       if (!track) return;
 
       let revIndex = totalSlides - 1;
-      goToSlide(revIndex, true); 
 
       const reverseInterval = setInterval(() => {
         revIndex--;
@@ -135,17 +135,9 @@ const partners = IMAGES.partners;
       }, reverseDuration);
     }
 
+    // Start slideshow
     goToSlide(0, true);
-    const forwardInterval = setInterval(nextSlide, forwardDuration);
-
-    const container = document.querySelector('.slideshow-container-6');
-    if (container) {
-      container.addEventListener('mouseenter', () => {
-        if (track) track.style.transition = 'none';
-      });
-      container.addEventListener('mouseleave', () => {
-      });
-    }
+    setInterval(nextSlide, forwardDuration);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
