@@ -1,7 +1,6 @@
 ---
-
+import { IMAGES } from '../data/assets.js'; 
 ---
-
 
 <div class="div">
   <header class="header">
@@ -14,37 +13,86 @@
       </ul>
     </nav>
   </header>
-  
+
   <div class="page-content">
     <slot /> 
   </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <img src={IMAGES.logo.src} alt="Company Logo" class="footer-logo" />
+        
+        <p>Professional digital marketing solutions for businesses of all sizes. From website development to social media management, we help you grow your online presence.</p>
+        <h3>CONTACT US</h3>
+        <p>📞 +639 783 1987</p>
+        <p>📧 marketing.avietho@gmail.com</p>
+        <p>📱 <a href="#">Facebook</a></p>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-grid">
+          <div>
+            <h4>Digital PR</h4>
+            <p>Online Media Relations<br/>Influencer Marketing<br/>Online Reputation Management<br/>Digital Content Creation<br/>Social Media PR</p>
+          </div>
+          <div>
+            <h4>Social Media</h4>
+            <p>Social Media Strategy<br/>Content Creation<br/>Community Management<br/>Analytics & Reporting<br/>Brand Management</p>
+          </div>
+          <div>
+            <h4>Video Production</h4>
+            <p>Corporate Videos<br/>Event Videography<br/>Live Streaming<br/>Commercial Production<br/>Post-Production</p>
+          </div>
+          <div>
+            <h4>Web Development</h4>
+            <p>Website Design<br/>Frontend Development<br/>Backend Development<br/>E-commerce Solutions<br/>SEO & Analytics</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Footer Bottom Section -->
+    <div class="footer-bottom">
+      <p>© 2025 Avietho Digital Marketing. All rights reserved.</p>
+    </div>
+  </footer>
 </div>
 
 <style>
-  .header{
-    padding: 2rem 3rem;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #eaeaea;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+  .div { font-family: 'Montserrat', 'Futura', 'Century Gothic', sans-serif; }
+
+  .header { padding: 2rem 3rem; background-color: #f8f9fa; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 100; }
+  .ul { list-style: none; display: flex; gap: 2rem; margin: 0; padding: 0; a { text-decoration: none; color: #333; font-weight: 600; &:hover { color: #007bff; } } }
+
+  .footer { background: #1e293b; color: #ffffff; padding: 4rem 2rem 2rem 2rem; margin-top: auto; }
+  .footer-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: row; gap: 4rem; margin-bottom: 3rem; }
+  
+  .footer-left { flex: 0 0 30%; }
+  .footer-right { flex: 0 0 70%; }
+
+  .footer-logo { 
+    display: block;
+    width: 75px;       
+    max-width: 100%;    
+    height: auto;       
+    margin-bottom: -1.5rem; 
   }
 
-  .ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
+  .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
 
-    a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 600;
-      transition: color 0.2s;
-
-      &:hover { color: #007bff; }
-    }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid #ffffff;
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.8;
   }
 
+  h3 { color: #ffaa66; margin-top: 2rem; }
+  h4 { color: #ffaa66; margin-bottom: 1rem; font-size: 0.9rem; }
+  p { font-size: 0.85rem; line-height: 1.6; }
+  a { color: #ffffff; text-decoration: none; }
 </style>
