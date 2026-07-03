@@ -1,12 +1,8 @@
-<!-- ChatWidget.astro – fully functional chat widget -->
 <script is:inline>
   // ---- Configuration ----
-  const API_URL = 'http://localhost:5000';   // change to your Flask server URL if different
+  const API_URL = 'http://localhost:5000'; // change to your Flask server URL if different
 
   // ---- Create the icon and chat window directly on the body ----
-  // (avoids Astro scoping / re-render issues)
-
-  // -- Icon --
   const iconDiv = document.createElement('div');
   iconDiv.id = 'chat-icon';
   iconDiv.innerHTML = `
@@ -15,7 +11,6 @@
     </svg>`;
   document.body.appendChild(iconDiv);
 
-  // -- Chat window --
   const windowDiv = document.createElement('div');
   windowDiv.id = 'chat-window';
   windowDiv.style.display = 'none';
@@ -31,13 +26,11 @@
     </div>`;
   document.body.appendChild(windowDiv);
 
-  // ---- DOM references ----
   const messagesDiv = document.getElementById('chat-messages');
   const input = document.getElementById('chat-input');
   const sendBtn = document.getElementById('chat-send-btn');
   const closeBtn = document.getElementById('chat-close-btn');
 
-  // ---- Open / close ----
   iconDiv.addEventListener('click', () => {
     windowDiv.style.display = 'flex';
     iconDiv.style.display = 'none';
@@ -48,20 +41,27 @@
     iconDiv.style.display = 'flex';
   });
 
-  // ---- Send message to Flask ----
   async function sendMessage() {
     const message = input.value.trim();
     if (!message) return;
 
-    // Display user message
     messagesDiv.innerHTML += `<div class="chat-msg user-msg">${message}</div>`;
     input.value = '';
 
-    // Show a temporary "typing..." indicator (optional)
+    // Create typing indicator with 3-dot animation
     const typingDiv = document.createElement('div');
     typingDiv.className = 'chat-msg bot-msg';
-    typingDiv.textContent = 'Thinking...';
+    const dotsSpan = document.createElement('span');
+    typingDiv.appendChild(document.createTextNode('🤔'));
+    typingDiv.appendChild(dotsSpan);
     messagesDiv.appendChild(typingDiv);
+    
+    let dots = 1;
+    const interval = setInterval(() => {
+      dots = (dots % 3) + 1;
+      dotsSpan.textContent = '.'.repeat(dots);
+    }, 400);
+
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
     try {
@@ -72,13 +72,14 @@
       });
       const data = await response.json();
       const reply = data.reply || 'Sorry, I had trouble answering.';
-
-      // Remove the "Thinking..." message and add the real reply
+      
+      clearInterval(interval);
       messagesDiv.removeChild(typingDiv);
       messagesDiv.innerHTML += `<div class="chat-msg bot-msg">${reply}</div>`;
     } catch (error) {
+      clearInterval(interval);
       messagesDiv.removeChild(typingDiv);
-      messagesDiv.innerHTML += `<div class="chat-msg bot-msg">Error: Could not connect to the server. Make sure Flask is running.</div>`;
+      messagesDiv.innerHTML += `<div class="chat-msg bot-msg">Error: Could not connect to the server.</div>`;
     }
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
   }
@@ -90,25 +91,26 @@
 </script>
 
 <style is:global>
-  /* ========== Chat Widget Styles ========== */
+  /* ========== Chat Widget Styles: Black & Orange Edition ========== */
   #chat-icon {
     position: fixed;
     bottom: 20px;
     right: 20px;
     width: 56px;
     height: 56px;
-    background-color: #007bff;
+    background-color: #ff6600;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.4);
     z-index: 9999;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
   #chat-icon:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
   }
 
   #chat-window {
@@ -117,9 +119,10 @@
     right: 20px;
     width: 360px;
     height: 480px;
-    background: white;
+    background: #1a1a1a;
+    border: 1px solid #333;
     border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
     display: none;
     flex-direction: column;
     z-index: 10000;
@@ -127,8 +130,8 @@
   }
 
   #chat-header {
-    background: #007bff;
-    color: white;
+    background: #ff6600;
+    color: #fff;
     padding: 12px 16px;
     display: flex;
     justify-content: space-between;
@@ -152,7 +155,7 @@
     flex: 1;
     padding: 12px;
     overflow-y: auto;
-    background: #f9f9f9;
+    background: #121212;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -161,27 +164,38 @@
   #chat-input-area {
     display: flex;
     padding: 10px;
-    border-top: 1px solid #ddd;
-    background: white;
+    border-top: 1px solid #333;
+    background: #1a1a1a;
   }
 
   #chat-input {
     flex: 1;
     padding: 8px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #333;
     border-radius: 20px;
     outline: none;
+    background: #252525;
+    color: white;
+  }
+
+  #chat-input::placeholder {
+    color: #888;
   }
 
   #chat-send-btn {
     margin-left: 8px;
     padding: 8px 16px;
-    background: #007bff;
+    background: #ff6600;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
+    transition: box-shadow 0.2s;
+  }
+  
+  #chat-send-btn:hover {
+    box-shadow: 0 0 8px rgba(255, 102, 0, 0.5);
   }
 
   .chat-msg {
@@ -193,14 +207,15 @@
   }
   .user-msg {
     align-self: flex-end;
-    background: #007bff;
+    background: #ff6600;
     color: white;
     border-bottom-right-radius: 4px;
   }
   .bot-msg {
     align-self: flex-start;
-    background: white;
-    border: 1px solid #e0e0e0;
+    background: #252525;
+    color: #e0e0e0;
+    border: 1px solid #333;
     border-bottom-left-radius: 4px;
   }
 </style>

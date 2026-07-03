@@ -31,6 +31,18 @@ import tktk from '../assets/icon/tiktok_icon.png';
 import ig from '../assets/icon/insta_icon.png';
 import fb from '../assets/icon/fb_icon.webp';
 
+import s1 from '../assets/imgs/slide1.jpg';
+import s2 from '../assets/imgs/slide2.jpg';
+import s3 from '../assets/imgs/slide3.jpg';
+import s4 from '../assets/imgs/slide4.jpg';
+import s5 from '../assets/imgs/slide5.jpg';
+import s6 from '../assets/imgs/slide6.jpg';
+import s7 from '../assets/imgs/slide7.jpg';
+import s8 from '../assets/imgs/slide8.jpg';
+import s9 from '../assets/imgs/slide9.jpg';
+import s10 from '../assets/imgs/slide10.jpg';
+import s11 from '../assets/imgs/slide11.jpg';
+
 export const IMAGES = {
   logo: logoImage,
   heroBg: bg_bx1,
@@ -63,5 +75,18 @@ export const IMAGES = {
     tktk,
     ig,
     fb
+  },
+  slide:{
+    s1,
+    s2,
+    s3,
+    s4,
+    s5,
+    s6,
+    s7,
+    s8,
+    s9,
+    s10,
+    s11
   }
 };

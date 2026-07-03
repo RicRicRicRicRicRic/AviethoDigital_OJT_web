@@ -336,6 +336,11 @@ const counters = document.querySelectorAll('.stat-number') as NodeListOf<HTMLEle
                 <li>Data-driven content that converts audiences into customers</li>
                 <li>Platform-native creative built for engagement and reach</li>
               </ul>
+
+              <div class="cta-buttons">
+                <a href="#contact" class="btn-primary">Boost my social impact</a>
+                <a href="#portfolio" class="btn-secondary">See real results</a>
+              </div>
             </div>
           </div>
 
@@ -349,8 +354,9 @@ const counters = document.querySelectorAll('.stat-number') as NodeListOf<HTMLEle
           </div>
         </div>
 
-        <div class="box box-6">Div 6</div>
-        <div class="box box-7">Div 7</div>
+        <div class="box box-6">
+          <h1>BEHIND THE <span>WORK</span></h1>
+        </div>
       </div>
     </main>
   </Main>
@@ -944,16 +950,37 @@ const counters = document.querySelectorAll('.stat-number') as NodeListOf<HTMLEle
         }
       }
 
-      .impact-list {
-        list-style: disc;
-        margin-top: 2rem;
-        padding-left: 1.5rem;
+.impact-list {
+        margin-top: 1.5rem;
+        padding-left: 1.2rem;
         color: #94a3b8;
-        
-        li {
-          margin-bottom: 0.75rem;
-          line-height: 1.6;
-          &::marker { color: #ffaa66; }
+        li { margin-bottom: 0.5rem; &::marker { color: #ffaa66; } }
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+
+        a {
+          padding: 0.8rem 1.8rem;
+          border-radius: 50px;
+          font-weight: 600;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          border: 1px solid #ffaa66;
+        }
+
+        .btn-primary {
+          background: #ffaa66;
+          color: #000;
+          &:hover { background: #ffb880; box-shadow: 0 0 15px rgba(255, 170, 102, 0.5); }
+        }
+
+        .btn-secondary {
+          background: transparent;
+          color: #ffaa66;
+          &:hover { background: rgba(255, 170, 102, 0.1); box-shadow: 0 0 15px rgba(255, 170, 102, 0.2); }
         }
       }
 
