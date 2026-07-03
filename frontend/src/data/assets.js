@@ -26,6 +26,11 @@ import teamJojo from '../assets/imgs/teamJojo.png';
 import teamMigz from '../assets/imgs/teamMigz.png';
 import teamMike from '../assets/imgs/teamMike.png';
 
+import yt from '../assets/icon/yt_icon.png';
+import tktk from '../assets/icon/tiktok_icon.png';
+import ig from '../assets/icon/insta_icon.png';
+import fb from '../assets/icon/fb_icon.webp';
+
 export const IMAGES = {
   logo: logoImage,
   heroBg: bg_bx1,
@@ -52,5 +57,11 @@ export const IMAGES = {
     jojo: teamJojo,
     migz: teamMigz,
     mike: teamMike
+  },
+  icon:{
+    yt,
+    tktk,
+    ig,
+    fb
   }
 };
