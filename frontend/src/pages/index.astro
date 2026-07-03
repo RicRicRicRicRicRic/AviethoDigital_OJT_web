@@ -1,27 +1,9 @@
 ---
 import Main from '../components/main_page.astro';
 import Layout from '../layouts/Layout.astro';
-import logoImage from '../assets/logo/ad_logo.png';
-import bg_bx1 from '../assets/background/homebx1.avif'
-import aviethoImage from '../assets/partners/avietho.png';
-import cupangImage from '../assets/partners/cupang.png';
-import landcoImage from '../assets/partners/Landco.png';
-import manOfTheWorldImage from '../assets/partners/man_of_the_world.png';
-import missWorldBatangasImage from '../assets/partners/miss_world_batangas.png';
-import r18Image from '../assets/partners/r-18.png';
-import mmBranding from '../assets/imgs/mm_branding.jpg';
-import mmMarketing from '../assets/imgs/mm_marketing.webp';
-import publicRelations from '../assets/imgs/public_relations.jpg';
-import webDev from '../assets/imgs/web_dev.webp';
+import { IMAGES } from '../data/assets.js'; 
 
-const partners = [
-  aviethoImage,
-  cupangImage,
-  landcoImage,
-  manOfTheWorldImage,
-  missWorldBatangasImage,
-  r18Image
-];
+const partners = IMAGES.partners;
 ---
 
 <script>
@@ -56,16 +38,68 @@ const partners = [
       track.style.transform = `translateX(-${currentSlide * 100}%)`;
     }, 3000);
   }
+
+  function initScrollAnimations() {
+    const box2 = document.querySelector('.box-2');
+    if (!box2) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const subSections = box2.querySelectorAll('.sub-section');
+        
+        if (entry.isIntersecting) {
+          subSections.forEach((section, index) => {
+            setTimeout(() => {
+              section.classList.add('visible');
+            }, index * 150); 
+          });
+        } else {
+          subSections.forEach((section) => {
+            section.classList.remove('visible');
+          });
+        }
+      });
+    }, {
+      threshold: 0.2,   
+      rootMargin: "0px 0px -50px 0px"
+    });
+    
+    observer.observe(box2);
+  }
+
+  // Interactive Box 3 Right Column Slideshow Script
+  function initBox3Slideshow() {
+    const track3 = document.getElementById('box3-track');
+    const buttons3 = document.querySelectorAll('.control-btn');
+
+    buttons3.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetIndex = btn.getAttribute('data-slide');
+        
+        if (track3) {
+          track3.style.transform = `translateX(-${Number(targetIndex) * 100}%)`;
+        }
+
+        buttons3.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initScrollAnimations();
+    initBox3Slideshow();
+  });
 </script>
 
 <Layout>
   <Main>
     <main>
       <div class="div-container">
-        <div class="box box-1" style={`background-image: url(${bg_bx1.src});`}>
+        <div class="box box-1" style={`background-image: url(${IMAGES.heroBg.src});`}>
           <div class="glass-overlay">
             <div class="left-section">          
-              <img src={logoImage.src} alt="company logo" class="logo" />
+              <img src={IMAGES.logo.src} alt="company logo" class="logo" />
               <p id="fading-text" class="fade-text visible">Smart campaigns, powerful content, real results</p>
               <button class="cta-button">
                 <span>Get Started</span>
@@ -90,7 +124,7 @@ const partners = [
         <div class="box box-2">
           <div class="sub-section section-1">
             <div class="section-img-wrapper">
-              <img src={publicRelations.src} alt="Public Relations" />
+              <img src={IMAGES.services.publicRelations.src} alt="Public Relations" />
             </div>
             <div class="section-content">
               <h3>Public Relations</h3>
@@ -100,7 +134,7 @@ const partners = [
           
           <div class="sub-section section-2">
             <div class="section-img-wrapper">
-              <img src={mmMarketing.src} alt="Digital & Social Media Marketing" />
+              <img src={IMAGES.services.mmMarketing.src} alt="Digital & Social Media Marketing" />
             </div>
             <div class="section-content">
               <h3>Digital & Social Media Marketing</h3>
@@ -110,7 +144,7 @@ const partners = [
           
           <div class="sub-section section-3">
             <div class="section-img-wrapper">
-              <img src={mmBranding.src} alt="Multimedia & Branding" />
+              <img src={IMAGES.services.mmBranding.src} alt="Multimedia & Branding" />
             </div>
             <div class="section-content">
               <h3>Multimedia & Branding</h3>
@@ -120,7 +154,7 @@ const partners = [
           
           <div class="sub-section section-4">
             <div class="section-img-wrapper">
-              <img src={webDev.src} alt="Web Development" />
+              <img src={IMAGES.services.webDev.src} alt="Web Development" />
             </div>
             <div class="section-content">
               <h3>Web Development</h3>
@@ -129,7 +163,51 @@ const partners = [
           </div>
         </div>
 
-        <div class="box box-3">Div 3</div>
+        <div class="box box-3" style={`background-image: url(${IMAGES.heroBg3.src});`}>
+          <div class="glass-overlay">
+            <div class="column column-left">
+              <h1>Complete Web Solutions</h1>
+              <p>From design to deployment, we provide comprehensive website development services that drive results.</p>
+            </div>
+            
+            <div class="column column-middle">
+              <div class="gif-wrapper">
+                <img src={IMAGES.gif_webDev?.src} alt="Web Development Animation" />
+              </div>
+            </div>
+            
+            <div class="column column-right">
+              <div class="slideshow-window">
+                <div class="slideshow-slider" id="box3-track">
+                  <div class="tech-slide">
+                    <h2>Frontend Development</h2>
+                    <p>Crafting ultra-responsive user interfaces with flawless interactions, speed optimizations, and clean architecture configurations using modern web tools.</p>
+                  </div>
+                  <div class="tech-slide">
+                    <h2>Backend Systems</h2>
+                    <p>Building scalable microservices, ironclad security infrastructures, and robust API logic layers designed to manage intensive data pipelines fluidly.</p>
+                  </div>
+                  <div class="tech-slide">
+                    <h2>Database Operations</h2>
+                    <p>Architecting highly performant schemas and intelligent caching layers ensuring data availability, integrity, and lightning-fast query execution handles.</p>
+                  </div>
+                  <div class="tech-slide">
+                    <h2>Production Tools</h2>
+                    <p>Deploying reliable automation configurations, continuous optimization monitors, and advanced analytical setups to keep architectures flying safely.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="slide-controls">
+                <button class="control-btn active" data-slide="0"><span>Frontend</span></button>
+                <button class="control-btn" data-slide="1"><span>Backend</span></button>
+                <button class="control-btn" data-slide="2"><span>Database</span></button>
+                <button class="control-btn" data-slide="3"><span>Tools</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="box box-4">Div 4</div>
         <div class="box box-5">Div 5</div>
         <div class="box box-6">Div 6</div>
@@ -153,7 +231,7 @@ const partners = [
     border-radius: 8px;
   }
   
-  .box-1 {
+.box-1 {
     height: 800px;
     padding: 0;
     overflow: hidden;
@@ -176,7 +254,7 @@ const partners = [
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      margin-left: 4rem;
+      margin-left: 6rem;
       margin-top: -5rem;
       flex: 1;
 
@@ -194,7 +272,6 @@ const partners = [
         text-shadow: 0 0 10px rgba(255, 170, 102, 0.3);
         opacity: 0;
         transition: opacity 0.75s ease-in-out;
-
         &.visible {
           opacity: 1;
         }
@@ -211,7 +288,6 @@ const partners = [
         cursor: pointer;
         box-shadow: 0 4px 15px rgba(255, 123, 0, 0.4);
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
         &:hover {
           transform: translateY(-3px);
           box-shadow: 0 8px 25px rgba(255, 123, 0, 0.6);
@@ -233,8 +309,7 @@ const partners = [
       justify-content: flex-start;
       overflow: hidden;
       flex-shrink: 0;
-      margin-right: 6rem;
-
+      margin-right: 8rem;
       .section-title {
         font-size: 2rem;
         font-weight: 600;
@@ -280,37 +355,34 @@ const partners = [
     }
   }
 
-  
-  .box-2 {
-    height: auto; 
+.box-2 {
+    height: auto;
     min-height: 600px;
     padding: 2.5rem;
     background-color: #f8fafc;
     display: flex;
     flex-direction: row; 
     gap: 1.5rem;
-
+    
     .sub-section {
       flex: 1; 
       display: flex;
       flex-direction: column;
       background-color: #ffffff;
       border-radius: 12px;
-      overflow: hidden; 
+      overflow: hidden;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
       border: 1px solid #e2e8f0;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       
       opacity: 0;
-      animation: boxPopup 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-
-
+      transform: translateY(40px) scale(0.95);
+      
       .section-img-wrapper {
         flex: 3; 
         height: 180px; 
         overflow: hidden;
         position: relative;
-
         img {
           width: 100%;
           height: 100%;
@@ -318,7 +390,6 @@ const partners = [
           object-position: center;
         }
       }
-
 
       .section-content {
         flex: 4;
@@ -344,13 +415,11 @@ const partners = [
         box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.08);
       }
     }
-
-    .section-1 { animation-delay: 0.15s; }
-    .section-2 { animation-delay: 0.35s; }
-    .section-3 { animation-delay: 0.55s; }
-    .section-4 { animation-delay: 0.75s; }
+    .sub-section.visible {
+      animation: boxPopup 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
   }
-
+  
   @keyframes boxPopup {
     0% {
       opacity: 0;
@@ -359,6 +428,203 @@ const partners = [
     100% {
       opacity: 1;
       transform: translateY(0) scale(1);
+    }
+  }
+
+.box-3 {
+    width: 100%;
+    height: 750px; 
+    padding: 0;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+
+    .glass-overlay {
+      width: 100%;
+      height: 100%;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 1.5rem;
+      background: rgba(15, 23, 42, 0.5); 
+      backdrop-filter: blur(10px);
+      box-sizing: border-box;
+      overflow: hidden; 
+    }
+
+    .column {
+      flex: 1;
+      min-width: 0; 
+      min-height: 0; 
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .column-left {
+      justify-content: center;
+      padding: 2rem;
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #ffaa66; 
+        text-shadow: 0 0 15px rgba(255, 170, 102, 0.6); 
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #ffd1a3; 
+        font-weight: 500;
+      }
+    }
+
+    .column-middle {
+      justify-content: center;
+      align-items: center;
+      
+      .gif-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        padding: 1rem; 
+
+        img {
+          width: 100%;
+          height: 100%;
+          max-width: 100%;
+          max-height: 100%; 
+          object-fit: contain;
+          object-position: center;
+        }
+      }
+    }
+
+    .column-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .slideshow-window {
+        width: 100%;
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: -3rem;
+      }
+      .slideshow-slider {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .tech-slide {
+        min-width: 100%;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem;
+        box-sizing: border-box;
+
+        h2 {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #ffffff;
+          margin-bottom: 1.25rem;
+          letter-spacing: -0.5px;
+        }
+
+        p {
+          font-size: 1.05rem;
+          line-height: 1.7;
+          color: #94a3b8;
+        }
+      }
+
+      .slide-controls {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        width: 100%;
+        margin-bottom: 8rem;
+      }
+
+      .control-btn {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 0.85rem;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+        span {
+          position: relative;
+          z-index: 2;
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #94a3b8;
+          transition: color 0.3s ease;
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, rgba(255, 123, 0, 0.15) 0%, rgba(255, 170, 102, 0.05) 100%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: 1;
+        }
+
+        &:hover {
+          border-color: rgba(255, 170, 102, 0.4);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(255, 123, 0, 0.15);
+          
+          span {
+            color: #ffffff;
+          }
+
+          &::before {
+            opacity: 1;
+          }
+        }
+
+        &.active {
+          background: linear-gradient(135deg, #ff7b00 0%, #ffaa66 100%);
+          border-color: transparent;
+          box-shadow: 0 0 20px rgba(255, 123, 0, 0.4);
+
+          span {
+            color: #ffffff;
+            font-weight: 700;
+          }
+
+          &:hover {
+            transform: none;
+            box-shadow: 0 0 25px rgba(255, 123, 0, 0.5);
+          }
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
     }
   }
 </style>
