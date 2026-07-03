@@ -4,10 +4,14 @@ import subprocess
 import threading
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import openai
 from sentence_transformers import SentenceTransformer
 import chromadb
 import google.generativeai as genai
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 app = Flask(__name__)
 CORS(app)
@@ -15,7 +19,6 @@ CORS(app)
 # ---------- CONFIG ----------
 DB_PATH = "./avietho_chroma"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-GOOGLE_API_KEY = "AIzaSyCSsvkFc3Uc6Lc7wXu_UIvoYHzTq1NW7QY"   # <-- put your real key
 genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel('gemini-3.5-flash')   # fast and free tier friendly
 # ----------------------------
