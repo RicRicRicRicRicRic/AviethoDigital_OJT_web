@@ -1,0 +1,50 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Environment variables (contains your API keys!)
+.env
+*.env
+
+# --- Chroma vector database ---
+avietho_chroma/
+
+# --- Jupyter / notebooks (if you use them) ---
+*.ipynb_checkpoints/
+
+# --- IDE / editor files ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- Training artefacts (models, checkpoints, etc.) ---
+*.pkl
+*.h5
+*.pt
+*.bin
+chatbot_model/
+checkpoints/
+
+# --- Logs ---
+*.log
+logs/
+
+# --- API keys / secrets ---
+# Never commit files that contain real keys
+secrets.yaml
+credentials.json
+service-account-key.json
