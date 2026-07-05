@@ -1,0 +1,131 @@
+---
+import { IMAGES } from '../../data/assets.js';
+---
+<script>
+  function initBox6Slideshow() {
+    const track = document.querySelector('.slideshow-track-6') as HTMLElement | null;
+    if (!track) return;
+
+    const slideItems = track.querySelectorAll('.slide-item');
+    const totalSlides = slideItems.length;
+    if (totalSlides <= 1) return;
+
+    let currentIndex = 0;
+    let isReversing = false;
+    const forwardDuration = 4500;   
+    const reverseDuration = 650;    
+
+    function goToSlide(index: number, instant = false) {
+      if (!track) return;
+      track.style.transition = instant 
+        ? 'none' 
+        : `transform ${isReversing ? reverseDuration : forwardDuration}ms ease-in-out`;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextSlide() {
+      if (isReversing) return;
+
+      currentIndex = (currentIndex + 1) % totalSlides; 
+
+      if (currentIndex === 0 && !isReversing) {
+        isReversing = true;
+        setTimeout(() => reverseBack(), 800);
+        return;
+      }
+      goToSlide(currentIndex);
+    }
+
+    function reverseBack() {
+      if (!track) return;
+
+      let revIndex = totalSlides - 1;
+
+      const reverseInterval = setInterval(() => {
+        revIndex--;
+        if (revIndex < 0) {
+          clearInterval(reverseInterval);
+          isReversing = false;
+          currentIndex = 0;
+          goToSlide(0, true);
+          return;
+        }
+        goToSlide(revIndex);
+      }, reverseDuration);
+    }
+
+    goToSlide(0, true);
+    setInterval(nextSlide, forwardDuration);
+  }
+
+  document.addEventListener('DOMContentLoaded', initBox6Slideshow);
+</script>
+
+<div class="box box-6" style={`background-image: url(${IMAGES.bg_bx6?.src});`}>
+  <h1>BEHIND THE <span>WORK</span></h1>
+  <div class="slideshow-container-6">
+    <div class="slideshow-track-6">
+      {Object.values(IMAGES.slide).map((slide) => (
+        <div class="slide-item">
+          <img src={slide.src} alt="Behind the work" />
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .box-6 {
+    border: none !important;
+    padding: 3rem 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 600px;
+    overflow: hidden;
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      span { 
+        color: #ffaa66; 
+        text-shadow: 0 0 15px rgba(255, 170, 102, 0.6); 
+      }
+    }
+
+    .slideshow-container-6 {
+      width: 95%;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 450px;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .slideshow-track-6 {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      gap: 20px; 
+      transition: transform 4.5s ease-in-out;
+    }
+
+    .slide-item {
+      min-width: calc(100% - 20px); 
+      height: 100%;
+      flex-shrink: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+  }
+</style>

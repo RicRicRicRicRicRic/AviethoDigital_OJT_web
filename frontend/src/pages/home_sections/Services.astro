@@ -1,0 +1,158 @@
+---
+import { IMAGES } from '../../data/assets.js';
+---
+<script>
+  function initScrollAnimations() {
+    const box2 = document.querySelector('.box-2');
+    if (!box2) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const subSections = box2.querySelectorAll('.sub-section');
+        
+        if (entry.isIntersecting) {
+          subSections.forEach((section, index) => {
+            setTimeout(() => {
+              section.classList.add('visible');
+            }, index * 150); 
+          });
+        } else {
+          subSections.forEach((section) => {
+            section.classList.remove('visible');
+          });
+        }
+      });
+    }, {
+      threshold: 0.2,   
+      rootMargin: "0px 0px -50px 0px"
+    });
+    observer.observe(box2);
+  }
+
+  document.addEventListener('DOMContentLoaded', initScrollAnimations);
+</script>
+
+<div class="box box-2">
+  <div class="sub-section section-1">
+    <div class="section-img-wrapper">
+      <img src={IMAGES.services.publicRelations.src} alt="Public Relations" />
+    </div>
+    <div class="section-content">
+      <h3>Public Relations</h3>
+      <p>Build an unshakeable reputation and command attention in your industry</p>
+    </div>
+  </div>
+  
+  <div class="sub-section section-2">
+    <div class="section-img-wrapper">
+      <img src={IMAGES.services.mmMarketing.src} alt="Digital & Social Media Marketing" />
+    </div>
+    <div class="section-content">
+      <h3>Digital & Social Media Marketing</h3>
+      <p>Engage your audience, expand your reach, and drive meaningful conversions</p>
+    </div>
+  </div>
+  
+  <div class="sub-section section-3">
+    <div class="section-img-wrapper">
+      <img src={IMAGES.services.mmBranding.src} alt="Multimedia & Branding" />
+    </div>
+    <div class="section-content">
+      <h3>Multimedia & Branding</h3>
+      <p>Captivate, communicate, and create an unforgettable brand experience</p>
+    </div>
+  </div>
+  
+  <div class="sub-section section-4">
+    <div class="section-img-wrapper">
+      <img src={IMAGES.services.webDev.src} alt="Web Development" />
+    </div>
+    <div class="section-content">
+      <h3>Web Development</h3>
+      <p>Your online presence, perfected for performance and maximum impact</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .box {
+    padding: 1rem;
+    background-color: #f0f2f5;
+    border: 1px solid #ccc;
+    font-weight: 500;
+    border-radius: 8px;
+  }
+  .box-2 {
+    height: auto;
+    min-height: 450px;
+    padding: 2.5rem;
+    background-color: #f8fafc;
+    display: flex;
+    flex-direction: row; 
+    gap: 1.5rem;
+
+    .sub-section {
+      flex: 1; 
+      display: flex;
+      flex-direction: column;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e2e8f0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+
+      .section-img-wrapper {
+        flex: 3; 
+        height: 180px; 
+        overflow: hidden;
+        position: relative;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+
+      .section-content {
+        flex: 4;
+        padding: 1.75rem 1.5rem;
+
+        h3 {
+          margin: 0 0 0.75rem 0;
+          font-size: 1.25rem;
+          color: #0f172a;
+          font-weight: 600;
+        }
+        p {
+          margin: 0;
+          font-size: 0.95rem;
+          color: #475569;
+          line-height: 1.6;
+        }
+      }
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.08);
+      }
+    }
+    .sub-section.visible {
+      animation: boxPopup 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+  }
+  
+  @keyframes boxPopup {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+</style>

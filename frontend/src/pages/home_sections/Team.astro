@@ -1,0 +1,177 @@
+---
+import { IMAGES } from '../../data/assets.js';
+
+const teamMembers = [
+  {
+    name: "Rickie Javier",
+    role: "Public Relations Specialist and Social Media Manager",
+    img: IMAGES.team.rickie.src,
+    bio: "Rickie Javier, Editor-in-Chief of Avietho Digital, has extensive experience in leading the team and strategizing content. Her skills are a product of learned experiences from studying Bachelor of Arts in Journalism, garnering exceptional communication skills and a sharp vision that oversees all aspects of content creation ensuring quality, consistency, and relevance across social media platforms. Rickie also exercises assertiveness and her social skills by collaborating with multiple personalities. Utilizing her honed expertise in the field of media, she immerses in field work as well as public relations. Beyond her contributions in the workplace, she finds fun and satisfaction in watching and reading mystery-thriller genres."
+  },
+  {
+    name: "Jojo Bayais",
+    role: "Photographer",
+    img: IMAGES.team.jojo.src,
+    bio: "Jojo Bayais is a talented photographer known for blending creative vision with seamless project management and performs smooth coordination with private subjects. With expertise in capturing stunning visuals and coordinating logistics, he ensures to deliver complete information and compelling imagery. In coordinating and producing visual outputs, Jojo combines artistic intuition with strong communication skills to bring ideas to life efficiently and creatively."
+  },
+  {
+    name: "Migz Junsay",
+    role: "Creative Director",
+    img: IMAGES.team.migz.src,
+    bio: "Migz Junsay is a versatile Creative Director specializing in video editing, 3D animation, graphic design, camera operation, and photography. With a Master's Degree in Multimedia Arts and more than a decade of experience in the field, he transforms ideas into captivating visual experiences that engage and inspire across multiple platforms. Combining artistic creativity with technical expertise, Migz expertly guides projects from concept to final production, whether developing dynamic animations, crafting bold graphics, or capturing compelling imagery. Driven by innovation and a passion for visual storytelling, he is dedicated to pushing creative boundaries and delivering high-quality, memorable content that elevates brands and connects with audiences."
+  },
+  {
+    name: "Mike Manuel",
+    role: "Video Grapher and Photographer",
+    img: IMAGES.team.mike.src,
+    bio: "Mike Manuel is a creative videographer and photographer known for turning ordinary moments into extraordinary visual stories. With a strong eye for composition and a deep understanding of light, movement, and emotion, he crafts compelling content that captures the essence of each subject. Specializing in both photography and cinematography, Mike works across a variety of styles — from portraits to creative videos. Every project is approached with passion, professionalism, and a desire to create something visually striking and meaningful."
+  }
+];
+---
+
+<div class="box box-4">
+  {teamMembers.map((member) => (
+    <div class="team-member-card" style={`background-image: url(${IMAGES.teamBgbx4.src});`}>
+      <div class="media-container">
+        <img src={member.img} alt={member.name} />
+      </div>
+      <div class="profile-details">
+        <div class="initial-text">
+          <h3>{member.name}</h3>
+          <p>{member.role}</p>
+        </div>
+        <div class="extended-text">
+          <h3>{member.name}</h3>
+          <p class="role">{member.role}</p>
+          <p class="bio">{member.bio}</p>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .box {
+    padding: 1rem;
+    background-color: #f0f2f5;
+    border: 1px solid #ccc;
+    font-weight: 500;
+    border-radius: 8px;
+  }
+  .box-4 {
+    width: 100%;
+    height: auto;
+    min-height: 500px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    box-sizing: border-box;
+
+    .team-member-card {
+      flex: 1;
+      min-width: 0;
+      height: 550px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+
+      .media-container {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center top;
+        }
+      }
+
+      .profile-details {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 34%;
+        padding: 1.25rem;
+        box-sizing: border-box;
+        background: #1e293b;
+        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.35);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        z-index: 2;
+        transition: height 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+
+        .initial-text, .extended-text {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+
+          h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -0.3px;
+          }
+          p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #94a3b8;
+            margin: 0;
+          }
+        }
+
+        .initial-text {
+          opacity: 1;
+          transition: opacity 0.3s ease-in; 
+        }
+
+        .extended-text {
+          position: absolute;
+          top: 1.25rem;
+          left: 1.25rem;
+          width: calc(100% - 2.5rem);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.1s ease-out;
+          .role {
+            color: #ffaa66;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+          .bio {
+            color: #cbd5e1;
+            line-height: 1.6;
+          }
+        }
+      }
+
+      &:hover .profile-details {
+        height: 100%;
+        .initial-text {
+          opacity: 0;
+          transition: opacity 0.1s ease-out;
+        }
+        .extended-text {
+          opacity: 1;
+          pointer-events: auto;
+          transition: opacity 0.25s ease-in; 
+        }
+      }
+    }
+  }
+</style>
