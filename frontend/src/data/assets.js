@@ -44,7 +44,19 @@ import iservm_ar from '../assets/icon/icon_serv_socmed_analyticsReporting.png'
 import icon_com from '../assets/icon/icon-commercial.png';
 import icon_corp from '../assets/icon/icon-corporate.png';
 import icon_doc from '../assets/icon/icon-documentary.png';
-import icon_ev from '../assets/icon/icon-event.png'
+import icon_ev from '../assets/icon/icon-event.png';
+import icon_pp_cg from '../assets/icon/icon_pp_colorgrading.png';
+import icon_pp_sd from '../assets/icon/icon_pp_sounddesign.png';
+import icon_pp_ve from '../assets/icon/icon_pp_videoedit.png';
+import icon_pp_ma from '../assets/icon/icon_pp_motion.png';
+import icon_ls_gg from '../assets/icon/icon_ls_gaming.png';
+import icon_ls_bus from '../assets/icon/icon_ls_business.png';
+import icon_ls_ent from '../assets/icon/icon_ls_ent.png';
+import icon_ls_live from '../assets/icon/icon_ls_live.png';
+import icon_spec_acc from '../assets/icon/icon_spec_acc.png'
+import icon_spec_drone from '../assets/icon/icon_spec_drone.png'
+import icon_spec_info from '../assets/icon/icon_spec_info.png'
+import icon_spec_seo from '../assets/icon/icon_spec_seo.png'
 
 //sliders
 import s1 from '../assets/imgs/slide1.jpg';
@@ -65,6 +77,7 @@ import serv_if from '../assets/imgs/serv_influencer_marketing.jpg';
 import serv_om from '../assets/imgs/serv_online_media.jpg';
 import serv_rm from '../assets/imgs/serv_reputation_management.jpg';
 import serv_smPR from '../assets/imgs/serv_social_mediaPR.jpg'
+
 
 //projects
 import digital_pr from '../assets/imgs/digital_pr.jpg';
@@ -88,6 +101,28 @@ import vid_marketing_back from '../assets/imgs/vid_marketing_back.jpg';
 import com_ad from '../assets/imgs/com_ad.jpg';
 import com_ad_back from '../assets/imgs/com_ad_back.jpg';
 
+
+
+import serv_socmed_cc from '../assets/imgs/serv_socmed_contentCreation.jpg'
+import serv_socmed_sp from '../assets/imgs/serv_socmed_StrategyPlanning.jpg'
+import serv_socmed_cm from '../assets/imgs/serv_socmed_community_management.jpg'
+import serv_socmed_ar from '../assets/imgs/serv_socmed_analythicsReporting.jpg';
+import vp_com from '../assets/imgs/vp_commercial.jpg';
+import vp_corp from '../assets/imgs/vp_corporate.jpg';
+import vp_doc from '../assets/imgs/vp_documentary.jpg';
+import vp_event from '../assets/imgs/vp_event.jpg';
+import pp_cg from '../assets/imgs/pp_colorGrading.jpg';
+import pp_mg from '../assets/imgs/pp_motionGraphics.jpg';
+import pp_sd from '../assets/imgs/pp_soundDesgin.jpg';
+import pp_ve from '../assets/imgs/pp_videoediting.jpg';
+import ls_bus from '../assets/imgs/ls_business.jpg';
+import ls_ent from '../assets/imgs/ls_enterprise.jpg';
+import ls_gg from '../assets/imgs/ls_gaming.jpg';
+import ls_sms from '../assets/imgs/ls_scoial_media_streaming.jpg';
+import spec_dr from '../assets/imgs/spec_drone.jpg';
+import spec_acc from '../assets/imgs/spec_access.jpg';
+import spec_info from '../assets/imgs/spec_info.jpg';
+import spec_vid from '../assets/imgs/spec_vid.jpg';
 
 export const IMAGES = {
   logo: logoImage,
@@ -135,7 +170,18 @@ export const IMAGES = {
     icon_corp,
     icon_doc,
     icon_ev,
-    
+    icon_pp_cg,
+    icon_pp_sd,
+    icon_pp_ve,
+    icon_pp_ma,
+    icon_ls_gg,
+    icon_ls_bus,
+    icon_ls_ent,
+    icon_ls_live,
+    icon_spec_acc,
+    icon_spec_drone,
+    icon_spec_info,
+    icon_spec_seo,
   },
   slide:{
     s1,
@@ -156,8 +202,28 @@ export const IMAGES = {
     serv_om: serv_om,
     serv_rm: serv_rm,
     serv_smPR: serv_smPR,
+    serv_socmed_cc: serv_socmed_cc,
+    serv_socmed_sp: serv_socmed_sp,
+    serv_socmed_cm: serv_socmed_cm,
+    serv_socmed_ar: serv_socmed_ar,
+    vp_com,
+    vp_corp,
+    vp_doc,
+    vp_event,
+    pp_cg,
+    pp_mg,
+    pp_sd,
+    pp_ve,
+    ls_bus,
+    ls_ent,
+    ls_gg,
+    ls_sms,
+    spec_dr,
+    spec_acc,
+    spec_info,
+    spec_vid,
   },
-    projects:{
+  projects:{
     digital_pr,
     digital_pr_back,
     soc_media,
@@ -179,6 +245,4 @@ export const IMAGES = {
     com_ad,
     com_ad_back
   },
-
-
 };
