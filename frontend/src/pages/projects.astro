@@ -1,0 +1,435 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Main from '../components/main_page.astro';
+import { IMAGES } from '../data/assets.js'; 
+---
+
+<Layout>
+  <Main>
+    <main style="padding: 3rem; background: #0a0f1c;">
+      <style is:global>
+        .services-page {
+          background: #0a0f1c;
+          color: #fff;
+          font-family: 'Inter', sans-serif;
+
+        }
+
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 24px;
+        }
+
+        .services-header {
+          text-align: center;
+          margin-bottom: 48px;
+        }
+
+        .services-header h1 {
+          font-size: clamp(2.5rem, 5vw, 3.8rem);
+          font-weight: 800;
+          letter-spacing: -0.02em;
+          margin: 0 0 12px;
+          background: linear-gradient(135deg, #fff, #ff8c42);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          transition: text-shadow 0.3s ease;
+        }
+
+        .services-header:hover h1 {
+        text-shadow: 0 0 20px rgba(255, 107, 0, 0.8), 0 0 40px rgba(255, 140, 66, 0.4);
+        }
+
+        .services-header .subtitle {
+          font-size: clamp(1rem, 1.5vw, 1.25rem);
+          color: #b0b0c8;
+          max-width: 700px;
+          margin: 0 auto;
+          line-height: 1.6;
+        }
+
+        /* ===== SERVICES GRID ===== */
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 28px;
+        }
+
+        /* ===== FLIP CARD ===== */
+        .service-card {
+          perspective: 1200px;
+          height: auto;
+          aspect-ratio: 4/3;
+          border-radius: 16px;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .service-card.animate-in {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .flip-card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+          transform-style: preserve-3d;
+          border-radius: 16px;
+        }
+
+        .service-card:hover .flip-card-inner {
+          transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+          position: absolute;
+          inset: 0;
+          backface-visibility: hidden;
+          border-radius: 16px;
+          overflow: hidden;
+          border: 1px solid #2a2a42;
+          background: #14141f;
+        }
+
+        .flip-card-front {
+          z-index: 2;
+          transform: rotateY(0deg);
+        }
+
+        .flip-card-back {
+          transform: rotateY(180deg);
+          display: flex;
+          flex-direction: column;
+        }
+
+        .service-image {
+          width: 100%;
+          height: 100%;
+        }
+
+        .service-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-image img {
+          transform: scale(1.05); /* subtle zoom while flipping */
+        }
+
+        /* Overlay on the back face */
+        .service-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(0deg, rgba(10,15,28,0.95) 0%, rgba(10,15,28,0.7) 50%, transparent 100%);
+          display: flex;
+          align-items: flex-end;
+          padding: 24px;
+        }
+
+        .service-content {
+          color: #fff;
+        }
+
+        .service-content h3 {
+          font-size: 1.2rem;
+          font-weight: 700;
+          margin: 0 0 8px;
+          color: #ff6b00;
+        }
+
+        .service-content p {
+          font-size: 0.9rem;
+          line-height: 1.5;
+          color: #b0b0c8;
+          margin: 0;
+        }
+
+        @media (max-width: 640px) {
+          .services-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      </style>
+
+      <section class="services-page">
+        <div class="container">
+          <div class="services-header">
+            <h1>Our Services</h1>
+            <p class="subtitle">
+              Comprehensive digital marketing and production solutions tailored to your brand.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.digital_pr.src} alt="Digital PR Campaign" loading="lazy" />
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.digital_pr_back.src} alt="Digital PR Campaign Back" loading="lazy" />
+                  </div>
+                  <div class="service-overlay">
+                    <div class="service-content">
+                      <h3>Digital PR Campaign</h3>
+                      <p>Online Media Relations & Influencer Marketing</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== Card 2 ===== -->
+            <div class="service-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.soc_media.src} alt="Social Media Management" loading="lazy" />
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.soc_media_back.src} alt="Social Media Management Back" loading="lazy" />
+                  </div>
+                  <div class="service-overlay">
+                    <div class="service-content">
+                      <h3>Social Media Management</h3>
+                      <p>Content Creation & Community Engagement</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== Card 3 ===== -->
+            <div class="service-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.vid_production.src} alt="Corporate Video Production" loading="lazy" />
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.vid_production_back.src} alt="Corporate Video Production Back" loading="lazy" />
+                  </div>
+                  <div class="service-overlay">
+                    <div class="service-content">
+                      <h3>Corporate Video Production</h3>
+                      <p>Professional Business & Marketing Videos</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== Card 4 ===== -->
+            <div class="service-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.live_streaming.src} alt="Live Streaming Services" loading="lazy" />
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.live_streaming_back.src} alt="Live Streaming Services Back" loading="lazy" />
+                  </div>
+                  <div class="service-overlay">
+                    <div class="service-content">
+                      <h3>Live Streaming Services</h3>
+                      <p>Multi-Platform Event & Business Streaming</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== Card 5 ===== -->
+            <div class="service-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.event_videography.src} alt="Event Videography" loading="lazy" />
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.event_videography_back.src} alt="Event Videography Back" loading="lazy" />
+                  </div>
+                  <div class="service-overlay">
+                    <div class="service-content">
+                      <h3>Event Videography</h3>
+                      <p>Conference, Wedding & Concert Coverage</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== Card 6 ===== -->
+            <div class="service-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.vid_prod.src} alt="Video Post-Production" loading="lazy" />
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.vid_prod_back.src} alt="Video Post-Production Back" loading="lazy" />
+                  </div>
+                  <div class="service-overlay">
+                    <div class="service-content">
+                      <h3>Video Post-Production</h3>
+                      <p>Editing, Color Grading & Motion Graphics</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== Card 7 ===== -->
+            <div class="service-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.online_reputation.src} alt="Online Reputation Management" loading="lazy" />
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.online_reputation_back.src} alt="Online Reputation Management Back" loading="lazy" />
+                  </div>
+                  <div class="service-overlay">
+                    <div class="service-content">
+                      <h3>Online Reputation Management</h3>
+                      <p>Brand Monitoring & Digital PR Strategy</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== Card 8 ===== -->
+            <div class="service-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.drone_vid.src} alt="Drone Videography" loading="lazy" />
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.drone_vid_back.src} alt="Drone Videography Back" loading="lazy" />
+                  </div>
+                  <div class="service-overlay">
+                    <div class="service-content">
+                      <h3>Drone Videography</h3>
+                      <p>Aerial Video & Photography Services</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== Card 9 ===== -->
+            <div class="service-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.vid_marketing.src} alt="Video Marketing & SEO" loading="lazy" />
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.vid_marketing_back.src} alt="Video Marketing & SEO Back" loading="lazy" />
+                  </div>
+                  <div class="service-overlay">
+                    <div class="service-content">
+                      <h3>Video Marketing & SEO</h3>
+                      <p>Optimized Video Content & Analytics</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== Card 10 ===== -->
+            <div class="service-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.com_ad.src} alt="Commercial Production" loading="lazy" />
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="service-image">
+                    <img src={IMAGES.projects.com_ad_back.src} alt="Commercial Production Back" loading="lazy" />
+                  </div>
+                  <div class="service-overlay">
+                    <div class="service-content">
+                      <h3>Commercial & Advertising</h3>
+                      <p>TV Commercials & Digital Video Ads</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <script type="module">
+        document.addEventListener("DOMContentLoaded", () => {
+          const cards = document.querySelectorAll(".service-card");
+          
+          // Stagger animation
+          cards.forEach((card, i) => {
+            setTimeout(() => {
+              card.classList.add("animate-in");
+            }, 100 * i);
+          });
+
+          // Mouse parallax
+          const section = document.querySelector(".services-page");
+          if (section) {
+            section.addEventListener("mousemove", (e) => {
+              const { clientX, clientY } = e;
+              const xFrac = clientX / window.innerWidth - 0.5;
+              const yFrac = clientY / window.innerHeight - 0.5;
+              cards.forEach((card) => {
+                // Skip parallax when the card is being hovered (to avoid conflict with flip)
+                if (card.matches(":hover")) return;
+                const factor = Math.random() * 0.1 + 0.05;
+                const dx = xFrac * factor * 20;
+                const dy = yFrac * factor * 20;
+                card.style.transform = `translateX(${dx}px) translateY(${dy}px)`;
+              });
+            });
+          }
+
+          // When mouse leaves the section, reset transforms for non-hovered cards
+          section?.addEventListener("mouseleave", () => {
+            cards.forEach((card) => {
+              if (!card.matches(":hover")) {
+                card.style.transform = "";
+              }
+            });
+          });
+        });
+      </script>
+    </main>
+  </Main>
+</Layout>
