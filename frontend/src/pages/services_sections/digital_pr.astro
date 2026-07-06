@@ -4,38 +4,38 @@ const services = IMAGES.page_services;
 const icons = IMAGES.icon;
 ---
 
-    <div class="container">
-      <div class="top-div">
-        <div class="box active" id="box-1">
-          <img src={services.serv_cc.src} alt="Content Creation" />
-          <div class="content"><h1>Digital Content Creation and Distribution</h1><p>Creating content specifically designed to be shared online, attract media attention, and engage target audiences.</p></div>
-        </div>
-        <div class="box" id="box-2">
-          <img src={services.serv_if.src} alt="Influencer Marketing" />
-          <div class="content"><h1>Influencer Marketing and Outreach</h1><p>We help brands & Personalities connect with relevant online influencers to reach target audiences through trusted sources.</p></div>
-        </div>
-        <div class="box" id="box-3">
-          <img src={services.serv_om.src} alt="Online Media" />
-          <div class="content"><h1>Online Media Relations and Link Building</h1><p>This service focuses on securing mentions and coverage in online publications, news sites, and industry blogs. A significant benefit of this is acquiring high-quality backlinks, which are crucial for search engine optimization (SEO).</p></div>
-        </div>
-        <div class="box" id="box-4">
-          <img src={services.serv_rm.src} alt="Reputation Management" />
-          <div class="content"><h1>Online Reputation Management (ORM)</h1><p>We focus on monitoring, managing, and improving a brand's public perception across digital platforms.</p></div>
-        </div>
-        <div class="box" id="box-5">
-          <img src={services.serv_smPR.src} alt="Social Media PR" />
-          <div class="content"><h1>Social Media PR and Community Management</h1><p>Managed by a dedicated social media team, PR services play a crucial role in using social platforms for brand reputation and communication.</p></div>
-        </div>
-      </div>
-      
-      <div class="bottom-div">
-        <button class="active-btn" onclick="showBox('box-1', this)"><img src={icons.cc_icon.src} /></button>
-        <button onclick="showBox('box-2', this)"><img src={icons.im_icon.src} /></button>
-        <button onclick="showBox('box-3', this)"><img src={icons.omr_icon.src} /></button>
-        <button onclick="showBox('box-4', this)"><img src={icons.rm_icon.src} /></button>
-        <button onclick="showBox('box-5', this)"><img src={icons.smPR_icon.src} /></button>
-      </div>
+<div class="container">
+  <div class="top-div">
+    <div class="box active" id="box-1">
+      <img src={services.serv_cc.src} alt="Content Creation" />
+      <div class="content"><h1>Digital Content Creation and Distribution</h1><p>Creating content specifically designed to be shared online, attract media attention, and engage target audiences.</p></div>
     </div>
+    <div class="box" id="box-2">
+      <img src={services.serv_if.src} alt="Influencer Marketing" />
+      <div class="content"><h1>Influencer Marketing and Outreach</h1><p>We help brands & Personalities connect with relevant online influencers to reach target audiences through trusted sources.</p></div>
+    </div>
+    <div class="box" id="box-3">
+      <img src={services.serv_om.src} alt="Online Media" />
+      <div class="content"><h1>Online Media Relations and Link Building</h1><p>This service focuses on securing mentions and coverage in online publications, news sites, and industry blogs. A significant benefit of this is acquiring high-quality backlinks, which are crucial for search engine optimization (SEO).</p></div>
+    </div>
+    <div class="box" id="box-4">
+      <img src={services.serv_rm.src} alt="Reputation Management" />
+      <div class="content"><h1>Online Reputation Management (ORM)</h1><p>We focus on monitoring, managing, and improving a brand's public perception across digital platforms.</p></div>
+    </div>
+    <div class="box" id="box-5">
+      <img src={services.serv_smPR.src} alt="Social Media PR" />
+      <div class="content"><h1>Social Media PR and Community Management</h1><p>Managed by a dedicated social media team, PR services play a crucial role in using social platforms for brand reputation and communication.</p></div>
+    </div>
+  </div>
+  
+  <div class="bottom-div">
+    <button class="active-btn" onclick="showBox('box-1', this)"><img src={icons.cc_icon.src} /></button>
+    <button onclick="showBox('box-2', this)"><img src={icons.im_icon.src} /></button>
+    <button onclick="showBox('box-3', this)"><img src={icons.omr_icon.src} /></button>
+    <button onclick="showBox('box-4', this)"><img src={icons.rm_icon.src} /></button>
+    <button onclick="showBox('box-5', this)"><img src={icons.smPR_icon.src} /></button>
+  </div>
+</div>
 
 
 <script is:inline>
@@ -57,7 +57,7 @@ const icons = IMAGES.icon;
     display: flex; flex-direction: column; gap: 20px; padding: 20px; align-items: center; 
 
     .top-div { 
-      width: 100%; height: 400px; position: relative; overflow: hidden; 
+      width: 100%; height: 400px !important; position: relative; overflow: hidden; 
 
       .box {
         box-sizing: border-box; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff;

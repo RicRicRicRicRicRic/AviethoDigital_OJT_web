@@ -36,7 +36,15 @@ import cc_icon from '../assets/icon/content_creation_icon.png';
 import im_icon from '../assets/icon/Influencer_marketing_icon.png';
 import omr_icon from '../assets/icon/Online_media_relations_icon.png';
 import rm_icon from '../assets/icon/reputation_management_icon.png'
-import smPR_icon from '../assets/icon/socmed_PR_icon.png'
+import smPR_icon from '../assets/icon/socmed_PR_icon.png';
+import iservsm_strat from '../assets/icon/icon_serv_socmed_StrategyPlanning.jpg';
+import iservsm_cm from '../assets/icon/icon_serv_socmed_communityManagement.png';
+import iservm_cc from '../assets/icon/icon_serv_socmed_content_creation.png';
+import iservm_ar from '../assets/icon/icon_serv_socmed_analyticsReporting.png'
+import icon_com from '../assets/icon/icon-commercial.png';
+import icon_corp from '../assets/icon/icon-corporate.png';
+import icon_doc from '../assets/icon/icon-documentary.png';
+import icon_ev from '../assets/icon/icon-event.png'
 
 //sliders
 import s1 from '../assets/imgs/slide1.jpg';
@@ -57,6 +65,14 @@ import serv_if from '../assets/imgs/serv_influencer_marketing.jpg';
 import serv_om from '../assets/imgs/serv_online_media.jpg';
 import serv_rm from '../assets/imgs/serv_reputation_management.jpg';
 import serv_smPR from '../assets/imgs/serv_social_mediaPR.jpg'
+import serv_socmed_cc from '../assets/imgs/serv_socmed_contentCreation.jpg'
+import serv_socmed_sp from '../assets/imgs/serv_socmed_StrategyPlanning.jpg'
+import serv_socmed_cm from '../assets/imgs/serv_socmed_community_management.jpg'
+import serv_socmed_ar from '../assets/imgs/serv_socmed_analythicsReporting.jpg';
+import vp_com from '../assets/imgs/vp_commercial.jpg';
+import vp_corp from '../assets/imgs/vp_corporate.jpg';
+import vp_doc from '../assets/imgs/vp_documentary.jpg';
+import vp_event from '../assets/imgs/vp_event.jpg';
 
 
 
@@ -79,7 +95,7 @@ export const IMAGES = {
     publicRelations,
     mmMarketing,
     mmBranding,
-    webDev
+    webDev,
   },
   gif_webDev: gif_webDev,
   team: {
@@ -98,6 +114,15 @@ export const IMAGES = {
     omr_icon,
     rm_icon,
     smPR_icon,
+    iservsm_strat,
+    iservsm_cm,
+    iservm_cc,
+    iservm_ar,
+    icon_com,
+    icon_corp,
+    icon_doc,
+    icon_ev,
+    
   },
   slide:{
     s1,
@@ -118,5 +143,15 @@ export const IMAGES = {
     serv_om: serv_om,
     serv_rm: serv_rm,
     serv_smPR: serv_smPR,
-  }
+    serv_socmed_cc: serv_socmed_cc,
+    serv_socmed_sp: serv_socmed_sp,
+    serv_socmed_cm: serv_socmed_cm,
+    serv_socmed_ar: serv_socmed_ar,
+    vp_com,
+    vp_corp,
+    vp_doc,
+    vp_event,
+    
+  },
+
 };
