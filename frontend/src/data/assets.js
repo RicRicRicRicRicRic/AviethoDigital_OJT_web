@@ -27,11 +27,18 @@ import teamJojo from '../assets/imgs/teamJojo.png';
 import teamMigz from '../assets/imgs/teamMigz.png';
 import teamMike from '../assets/imgs/teamMike.png';
 
+//icons
 import yt from '../assets/icon/yt_icon.png';
 import tktk from '../assets/icon/tiktok_icon.png';
 import ig from '../assets/icon/insta_icon.png';
 import fb from '../assets/icon/fb_icon.webp';
+import cc_icon from '../assets/icon/content_creation_icon.png';
+import im_icon from '../assets/icon/Influencer_marketing_icon.png';
+import omr_icon from '../assets/icon/Online_media_relations_icon.png';
+import rm_icon from '../assets/icon/reputation_management_icon.png'
+import smPR_icon from '../assets/icon/socmed_PR_icon.png'
 
+//sliders
 import s1 from '../assets/imgs/slide1.jpg';
 import s2 from '../assets/imgs/slide2.jpg';
 import s3 from '../assets/imgs/slide3.jpg';
@@ -43,6 +50,15 @@ import s8 from '../assets/imgs/slide8.jpg';
 import s9 from '../assets/imgs/slide9.jpg';
 import s10 from '../assets/imgs/slide10.jpg';
 import s11 from '../assets/imgs/slide11.jpg';
+
+//services
+import serv_cc from  '../assets/imgs/serv_content_creation.jpg';
+import serv_if from '../assets/imgs/serv_influencer_marketing.jpg';
+import serv_om from '../assets/imgs/serv_online_media.jpg';
+import serv_rm from '../assets/imgs/serv_reputation_management.jpg';
+import serv_smPR from '../assets/imgs/serv_social_mediaPR.jpg'
+
+
 
 export const IMAGES = {
   logo: logoImage,
@@ -76,7 +92,12 @@ export const IMAGES = {
     yt,
     tktk,
     ig,
-    fb
+    fb,
+    cc_icon,
+    im_icon,
+    omr_icon,
+    rm_icon,
+    smPR_icon,
   },
   slide:{
     s1,
@@ -90,5 +111,12 @@ export const IMAGES = {
     s9,
     s10,
     s11
+  },
+  page_services:{
+    serv_cc: serv_cc,
+    serv_if: serv_if,
+    serv_om: serv_om,
+    serv_rm: serv_rm,
+    serv_smPR: serv_smPR,
   }
 };

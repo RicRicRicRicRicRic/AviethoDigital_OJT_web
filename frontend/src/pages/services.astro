@@ -1,12 +1,82 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Main from '../components/main_page.astro';
+import DigitalPR from './services_sections/digital_pr.astro';
+import SocialMedia from './services_sections/social_media.astro';
+import VideoProduction from './services_sections/video_production.astro';
+import PostProduction from './services_sections/post_production.astro';
+import LiveStreaming from './services_sections/live_streaming.astro';
+import Specialized from './services_sections/specialized.astro';
 ---
 
 <Layout>
   <Main>
-    <main style="padding: 3rem;">
-      <h1>Our Services Page</h1>
-    </main>
+    <div class="service-container">
+      <nav class="nav-buttons">
+        <button class="nav-btn active" onclick="showSection('pr', this)">01. Digital PR</button>
+        <button class="nav-btn" onclick="showSection('social', this)">02. Social Media</button>
+        <button class="nav-btn" onclick="showSection('video', this)">03. Video Production</button>
+        <button class="nav-btn" onclick="showSection('post', this)">04. Post-Production</button>
+        <button class="nav-btn" onclick="showSection('live', this)">05. Live Streaming</button>
+        <button class="nav-btn" onclick="showSection('special', this)">06. Specialized</button>
+      </nav>
+
+      <div id="service-display">
+        <div id="pr"><DigitalPR /></div>
+        <div id="social" class="hidden"><SocialMedia /></div>
+        <div id="video" class="hidden"><VideoProduction /></div>
+        <div id="post" class="hidden"><PostProduction /></div>
+        <div id="live" class="hidden"><LiveStreaming /></div>
+        <div id="special" class="hidden"><Specialized /></div>
+      </div>
+    </div>
   </Main>
 </Layout>
+
+<script is:inline>
+  function showSection(id, btnElement) {
+    // Hide all sections
+    document.querySelectorAll('#service-display > div').forEach(div => div.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+    
+    // Manage active underline state
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+    btnElement.classList.add('active');
+  }
+</script>
+
+<style>
+  .service-container {
+    padding: 3rem;
+    font-family: 'Poppins', 'Montserrat', 'Outfit', 'Urbanist', system-ui, -apple-system, sans-serif;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+    
+    button {
+      background: transparent;
+      border: none;
+      color: #64748b;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding-bottom: 0.5rem;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    button:hover { color: #ffaa66; }
+
+    button.active {
+      color: #ffaa66;
+      border-bottom: 2px solid #ffaa66;
+    }
+  }
+
+  .hidden { display: none; }
+</style>

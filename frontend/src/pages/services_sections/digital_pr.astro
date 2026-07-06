@@ -1,0 +1,110 @@
+---
+import { IMAGES } from '../../data/assets.js';
+const services = IMAGES.page_services;
+const icons = IMAGES.icon;
+---
+
+    <div class="container">
+      <div class="top-div">
+        <div class="box active" id="box-1">
+          <img src={services.serv_cc.src} alt="Content Creation" />
+          <div class="content"><h1>Digital Content Creation and Distribution</h1><p>Creating content specifically designed to be shared online, attract media attention, and engage target audiences.</p></div>
+        </div>
+        <div class="box" id="box-2">
+          <img src={services.serv_if.src} alt="Influencer Marketing" />
+          <div class="content"><h1>Influencer Marketing and Outreach</h1><p>We help brands & Personalities connect with relevant online influencers to reach target audiences through trusted sources.</p></div>
+        </div>
+        <div class="box" id="box-3">
+          <img src={services.serv_om.src} alt="Online Media" />
+          <div class="content"><h1>Online Media Relations and Link Building</h1><p>This service focuses on securing mentions and coverage in online publications, news sites, and industry blogs. A significant benefit of this is acquiring high-quality backlinks, which are crucial for search engine optimization (SEO).</p></div>
+        </div>
+        <div class="box" id="box-4">
+          <img src={services.serv_rm.src} alt="Reputation Management" />
+          <div class="content"><h1>Online Reputation Management (ORM)</h1><p>We focus on monitoring, managing, and improving a brand's public perception across digital platforms.</p></div>
+        </div>
+        <div class="box" id="box-5">
+          <img src={services.serv_smPR.src} alt="Social Media PR" />
+          <div class="content"><h1>Social Media PR and Community Management</h1><p>Managed by a dedicated social media team, PR services play a crucial role in using social platforms for brand reputation and communication.</p></div>
+        </div>
+      </div>
+      
+      <div class="bottom-div">
+        <button class="active-btn" onclick="showBox('box-1', this)"><img src={icons.cc_icon.src} /></button>
+        <button onclick="showBox('box-2', this)"><img src={icons.im_icon.src} /></button>
+        <button onclick="showBox('box-3', this)"><img src={icons.omr_icon.src} /></button>
+        <button onclick="showBox('box-4', this)"><img src={icons.rm_icon.src} /></button>
+        <button onclick="showBox('box-5', this)"><img src={icons.smPR_icon.src} /></button>
+      </div>
+    </div>
+
+
+<script is:inline>
+  function showBox(boxId, btnElement) {
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach(box => box.classList.remove('active'));
+    const buttons = document.querySelectorAll('.bottom-div button, .nav-buttons button');
+    buttons.forEach(btn => btn.classList.remove('active-btn'));
+    btnElement.classList.add('active-btn');
+    requestAnimationFrame(() => {
+      const target = document.getElementById(boxId);
+      if (target) target.classList.add('active');
+    });
+  }
+</script>
+
+<style>
+  .container { 
+    display: flex; flex-direction: column; gap: 20px; padding: 20px; align-items: center; 
+
+    .top-div { 
+      width: 100%; height: 400px; position: relative; overflow: hidden; 
+
+      .box {
+        box-sizing: border-box; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff;
+        display: flex; border-radius: 10px; overflow: hidden;
+        opacity: 0; transform: translateX(20px); pointer-events: none; z-index: 1;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        border: 1px solid #ddd;
+
+        &.active { opacity: 1; transform: translateX(0); pointer-events: auto; z-index: 2; }
+
+        &:not(.active) { transform: translateX(-20px); }
+
+        img { width: 50%; height: 100%; object-fit: cover; }
+
+        .content { 
+          width: 50%; padding: 20px; display: flex; flex-direction: column; justify-content: center; 
+          background-color: #252728; 
+          padding-right: 20px;
+          h1 { color: #ffaa66 !important; } 
+          p {color: #94a3b8;}
+          
+        }
+      }
+    }
+
+    .bottom-div { 
+      display: flex; gap: 30px; height: 100px; align-items: center; 
+
+      button {
+        padding: 35px; cursor: pointer; height: 60px; width: 60px;
+        background:#ffaa66 ; border: 3px solid #ffaa66; border-radius: 40px;
+        transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+
+        img { 
+          width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1); transition: filter 0.3s ease;
+        }
+      }
+
+      button.active-btn {
+        background: rgba(255, 170, 102, 0.3); border: 3px solid #ffaa66;
+        img { filter: brightness(1) invert(0); }
+      }
+
+      button:hover {
+        background: #ffaa66; box-shadow: 0 0 15px #ffaa66;
+        img { filter: brightness(1) invert(0); }
+      }
+    }
+  }
+</style>
