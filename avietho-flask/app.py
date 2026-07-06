@@ -88,18 +88,43 @@ def chat():
     # 3. Build a prompt with the context
     context_text = "\n\n".join(contexts)
     prompt = f"""You are a helpful assistant that answers questions about Avietho, a digital marketing company.
-Use only the following context to answer the question. If you can't find the answer, say you don't know.
+    Use only the following context to answer the question. If you can't find the answer, say you don't know.
 
-Context:
-{context_text}
+    Context:
+    {context_text}
 
-Question: {user_message}
-Answer:"""
+    Question: {user_message}
+
+    Instructions:
+    - Answer in clear, well-structured English.
+    - Use proper paragraphs and, if helpful, bullet points.
+    - Keep the tone professional and friendly.
+    - Do **not** use any Markdown formatting (like bold `**text**` or italics `*text*`). Just plain text.
+    - Preserve any list formatting from the context (like bullet points or numbered items).
+
+    Answer:"""
 
     try:
         # Gemini expects a prompt (or a list of messages)
         response = model.generate_content(prompt)
         reply = response.text.strip()
+
+        uncertainty_phrases = [
+            "i don't know",
+            "i do not know",
+            "i couldn't find",
+            "i cannot answer",
+            "sorry",
+            "unable to provide",
+            "no information",
+        ]
+        if any(phrase in reply.lower() for phrase in uncertainty_phrases):
+            reply += (
+                "\n\n📧 For further inquiries, please email us at "
+                "info@aviethodigital.com or message us on Messenger: "
+                "https://m.me/AviethoDigital"
+            )
+
     except Exception as e:
         reply = f"Error calling Gemini: {e}"
 
