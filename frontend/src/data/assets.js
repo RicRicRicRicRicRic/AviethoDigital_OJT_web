@@ -66,6 +66,27 @@ import serv_om from '../assets/imgs/serv_online_media.jpg';
 import serv_rm from '../assets/imgs/serv_reputation_management.jpg';
 import serv_smPR from '../assets/imgs/serv_social_mediaPR.jpg'
 
+//projects
+import digital_pr from '../assets/imgs/digital_pr.jpg';
+import digital_pr_back from '../assets/imgs/digital_pr_back.jpg';
+import soc_media from '../assets/imgs/soc_media.jpg';
+import soc_media_back from '../assets/imgs/soc_media_back.jpg';
+import vid_production from '../assets/imgs/vid_production.jpg';
+import vid_production_back from '../assets/imgs/vid_production_back.jpg';
+import live_streaming from '../assets/imgs/live_streaming.jpg';
+import live_streaming_back from '../assets/imgs/live_streaming_back.jpg';
+import event_videography from '../assets/imgs/event_videography.jpg';
+import event_videography_back from '../assets/imgs/event_videography_back.jpg';
+import vid_prod from '../assets/imgs/vid_prod.jpg';
+import vid_prod_back from '../assets/imgs/vid_prod_back.jpg';
+import online_reputation from '../assets/imgs/online_reputation.jpg';
+import online_reputation_back from '../assets/imgs/online_reputation_back.jpg';
+import drone_vid from '../assets/imgs/drone_vid.jpg';
+import drone_vid_back from '../assets/imgs/drone_vid_back.jpg';
+import vid_marketing from '../assets/imgs/vid_marketing.jpg';
+import vid_marketing_back from '../assets/imgs/vid_marketing_back.jpg';
+import com_ad from '../assets/imgs/com_ad.jpg';
+import com_ad_back from '../assets/imgs/com_ad_back.jpg';
 
 
 export const IMAGES = {
@@ -135,5 +156,29 @@ export const IMAGES = {
     serv_om: serv_om,
     serv_rm: serv_rm,
     serv_smPR: serv_smPR,
-  }
+  },
+    projects:{
+    digital_pr,
+    digital_pr_back,
+    soc_media,
+    soc_media_back,
+    vid_production,
+    vid_production_back,
+    live_streaming,
+    live_streaming_back,
+    event_videography,
+    event_videography_back,
+    vid_prod,
+    vid_prod_back,
+    online_reputation,
+    online_reputation_back,
+    drone_vid,
+    drone_vid_back,
+    vid_marketing,
+    vid_marketing_back,
+    com_ad,
+    com_ad_back
+  },
+
+
 };
