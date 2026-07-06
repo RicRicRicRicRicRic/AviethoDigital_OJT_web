@@ -29,7 +29,7 @@ const teamMembers = [
 ];
 ---
 
-<div class="box box-4">
+<div class="box box-4" >
   {teamMembers.map((member) => (
     <div class="team-member-card" style={`background-image: url(${IMAGES.teamBgbx4.src});`}>
       <div class="media-container">
@@ -56,7 +56,7 @@ const teamMembers = [
     background-color: #f0f2f5;
     border: 1px solid #ccc;
     font-weight: 500;
-    border-radius: 8px;
+    border-radius: 20px;
   }
   .box-4 {
     width: 100%;
@@ -67,6 +67,7 @@ const teamMembers = [
     flex-direction: row;
     gap: 1.5rem;
     box-sizing: border-box;
+
 
     .team-member-card {
       flex: 1;
