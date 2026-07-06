@@ -35,11 +35,10 @@ import Specialized from './services_sections/specialized.astro';
 
 <script is:inline>
   function showSection(id, btnElement) {
-    // Hide all sections
+
     document.querySelectorAll('#service-display > div').forEach(div => div.classList.add('hidden'));
     document.getElementById(id).classList.remove('hidden');
-    
-    // Manage active underline state
+
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
     btnElement.classList.add('active');
   }

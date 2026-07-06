@@ -5,6 +5,8 @@ import bg_bx3 from '../assets/background/home_bx3.jpg';
 import bg_bx5 from '../assets/imgs/fb_page.png';
 import team_bg_bx4 from '../assets/background/team_bg.jpg';
 import bg_bx6 from '../assets/background/bg_box6.png';
+import main_bg from '../assets/background/main_bg.jpg'
+import white_bg from '../assets/background/white_bg.jpg'
 
 // Partners
 import aviethoImage from '../assets/partners/avietho.png';
@@ -131,6 +133,8 @@ export const IMAGES = {
   heroBg5: bg_bx5,
   teamBgbx4: team_bg_bx4,
   bg_bx6: bg_bx6,
+  main_bg: main_bg,
+  white_bg: white_bg,
   partners: [
     aviethoImage,
     cupangImage,

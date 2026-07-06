@@ -5,7 +5,7 @@ import { IMAGES } from '../data/assets.js';
 <div class="div">
   <header class="header">
     <nav>
-      <ul class="ul">
+      <ul class="ul" id="nav-links">
         <li class="li"><a href="/">Home</a></li>
         <li class="li"><a href="/about">About</a></li>
         <li class="li"><a href="/services">Services</a></li>
@@ -58,40 +58,138 @@ import { IMAGES } from '../data/assets.js';
   </footer>
 </div>
 
+<script>
+  const currentPath = window.location.pathname;
+  const links = document.querySelectorAll('#nav-links a');
+  
+  links.forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      const parent = link.parentElement;
+      if (parent) {
+        parent.classList.add('active');
+      }
+    }
+  });
+</script>
+
 <style>
   .div { font-family: 'Montserrat', 'Futura', 'Century Gothic', sans-serif; }
 
-  .header { padding: 2rem 3rem; background-color: #f8f9fa; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 100; }
-  .ul { list-style: none; display: flex; gap: 2rem; margin: 0; padding: 0; a { text-decoration: none; color: #333; font-weight: 600; &:hover { color: #007bff; } } }
+  .header { 
+    padding: 2rem 3rem; 
+    background-color: #000000; 
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+    display: flex; 
+    justify-content: center; 
 
-  .footer { background: #1e293b; color: #ffffff; padding: 4rem 2rem 2rem 2rem; margin-top: auto; }
-  .footer-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: row; gap: 4rem; margin-bottom: 3rem; }
-  
-  .footer-left { flex: 0 0 30%; }
-  .footer-right { flex: 0 0 70%; }
+    .ul { 
+      list-style: none; 
+      display: flex; 
+      gap: 2rem; 
+      margin: 0; 
+      padding: 0; 
 
-  .footer-logo { 
-    display: block;
-    width: 75px;       
-    max-width: 100%;    
-    height: auto;       
-    margin-bottom: -1.5rem; 
+      .li {
+        position: relative;
+        padding: 10px 20px;
+        border-radius: 12px;
+        transition: all 0.4s ease;
+
+        a { 
+          text-decoration: none; 
+          color: #ffaa66; 
+          font-weight: 600; 
+          font-size: 20px;
+          transition: color 0.3s ease;
+        }
+
+        &.active {
+          background: rgba(255, 171, 102, 0.741);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.473);
+          overflow: hidden;
+          
+          a { color: #ffffff; }
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 200%; 
+            height: 100%;
+          
+            background: linear-gradient(
+              120deg, 
+              transparent 0%, 
+              rgba(255, 255, 255, 0) 30%, 
+              rgba(255, 255, 255, 0.5) 50%, 
+              rgba(255, 255, 255, 0) 70%, 
+              transparent 100%
+            );
+            animation: shine 6s infinite;
+          }
+        }
+      }
+    }
   }
 
-  .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-
-  .footer-bottom {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-top: 2rem;
-    border-top: 1px solid #ffffff;
-    text-align: center;
-    font-size: 0.8rem;
-    opacity: 0.8;
+  @keyframes shine {
+    100% { left: 100%; }
   }
 
-  h3 { color: #ffaa66; margin-top: 2rem; }
-  h4 { color: #ffaa66; margin-bottom: 1rem; font-size: 0.9rem; }
-  p { font-size: 0.85rem; line-height: 1.6; }
-  a { color: #ffffff; text-decoration: none; }
+  .footer { 
+    background: #1e293b; 
+    color: #ffffff; 
+    padding: 4rem 2rem 2rem 2rem; 
+    margin-top: auto; 
+
+    .footer-container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      display: flex; 
+      flex-direction: row; 
+      gap: 4rem; 
+      margin-bottom: 3rem; 
+
+      .footer-left { 
+        flex: 0 0 30%; 
+
+        .footer-logo { 
+          display: block;
+          width: 75px;       
+          max-width: 100%;    
+          height: auto;       
+          margin-bottom: -1.5rem; 
+        }
+      }
+
+      .footer-right { 
+        flex: 0 0 70%; 
+
+        .footer-grid { 
+          display: grid; 
+          grid-template-columns: repeat(4, 1fr); 
+          gap: 1.5rem; 
+        }
+      }
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid #ffffff;
+      text-align: center;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    h3 { color: #ffaa66; margin-top: 2rem; }
+    h4 { color: #ffaa66; margin-bottom: 1rem; font-size: 0.9rem; }
+    p { font-size: 0.85rem; line-height: 1.6; }
+    a { color: #ffffff; text-decoration: none; }
+  }
 </style>

@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Main from '../components/main_page.astro';
-
+import { IMAGES } from '../data/assets.js'; 
 
 // Import the broken-down sections
 import Hero from '../pages/home_sections/Hero.astro';
@@ -15,7 +15,7 @@ import BehindWork from '../pages/home_sections/BehindWork.astro';
 <Layout>
   <Main>
     <main>
-      <div class="div-container">
+      <div class="div-container" style={`background-image: url(${IMAGES.main_bg.src});`}>
         <Hero />
         <Services />
         <WebSolutions />
@@ -32,5 +32,6 @@ import BehindWork from '../pages/home_sections/BehindWork.astro';
     display: flex;
     flex-direction: column;
     font-family: 'Poppins', 'Montserrat', 'Outfit', 'Urbanist', system-ui, -apple-system, sans-serif;
+    gap: 75px;
   }
 </style>
