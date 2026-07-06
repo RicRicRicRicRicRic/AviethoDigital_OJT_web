@@ -45,6 +45,10 @@ import icon_com from '../assets/icon/icon-commercial.png';
 import icon_corp from '../assets/icon/icon-corporate.png';
 import icon_doc from '../assets/icon/icon-documentary.png';
 import icon_ev from '../assets/icon/icon-event.png'
+import icon_pp_cg from '../assets/icon/icon_pp_colorgrading.png'
+import icon_pp_sd from '../assets/icon/icon_pp_sounddesign.png'
+import icon_pp_ve from '../assets/icon/icon_pp_videoedit.png'
+import icon_pp_ma from '../assets/icon/icon_pp_motion.png'
 
 //sliders
 import s1 from '../assets/imgs/slide1.jpg';
@@ -73,6 +77,10 @@ import vp_com from '../assets/imgs/vp_commercial.jpg';
 import vp_corp from '../assets/imgs/vp_corporate.jpg';
 import vp_doc from '../assets/imgs/vp_documentary.jpg';
 import vp_event from '../assets/imgs/vp_event.jpg';
+import pp_cg from '../assets/imgs/pp_colorGrading.jpg'
+import pp_mg from '../assets/imgs/pp_motionGraphics.jpg'
+import pp_sd from '../assets/imgs/pp_soundDesgin.jpg'
+import pp_ve from '../assets/imgs/pp_videoediting.jpg'
 
 
 
@@ -122,7 +130,10 @@ export const IMAGES = {
     icon_corp,
     icon_doc,
     icon_ev,
-    
+    icon_pp_cg,
+    icon_pp_sd,
+    icon_pp_ve,
+    icon_pp_ma,
   },
   slide:{
     s1,
@@ -151,7 +162,10 @@ export const IMAGES = {
     vp_corp,
     vp_doc,
     vp_event,
-    
+    pp_cg,
+    pp_mg,
+    pp_sd,
+    pp_ve,
   },
 
 };
