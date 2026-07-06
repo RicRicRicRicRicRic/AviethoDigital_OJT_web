@@ -49,6 +49,33 @@ import { IMAGES } from '../data/assets.js';
     z-index: 2;
   }
 
+  /* ========== FADE-IN ON LOAD ========== */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+    /* Fade-in for all main sections */
+  .about-hero,
+  .about-story,
+  .about-values,
+  .about-services,
+  .about-clients {
+    opacity: 0;                       /* hidden initially */
+    animation: fadeInUp 0.9s ease forwards;
+  }
+
+  /* Staggered delays */
+  .about-story   { animation-delay: 0.15s; }
+  .about-values  { animation-delay: 0.30s; }
+  .about-services { animation-delay: 0.45s; }
+  .about-clients { animation-delay: 0.60s; }
+
   /* ========== HERO SECTION ========== */
   .about-hero {
     position: relative;
@@ -187,6 +214,20 @@ import { IMAGES } from '../data/assets.js';
     letter-spacing: -0.02em;
   }
 
+  .hero-title:hover .title-line {
+  text-shadow: 0 0 25px var(--accent-glow-strong), 0 0 10px var(--accent-primary);
+  transition: text-shadow 0.3s ease;
+  } 
+
+  .hero-title:hover .title-line.highlight {
+  background: linear-gradient(135deg, #fdcd30, #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: background 0.3s ease;
+}
+
+
+
   .title-line {
     display: block;
   }
@@ -270,6 +311,18 @@ import { IMAGES } from '../data/assets.js';
   .section-header {
     margin-bottom: 32px;
   }
+
+  .section-header:hover h2 {
+  color: var(--accent-primary);
+  text-shadow: 0 0 20px var(--accent-glow-strong), 0 0 8px var(--accent-primary);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  .section-header:hover .section-badge {
+  background: rgba(255, 107, 0, 0.2);
+  border-color: var(--accent-primary);
+  color: #fff;
+  transition: all 0.3s ease;
+    }
 
   .section-badge {
     display: inline-block;
@@ -571,6 +624,12 @@ import { IMAGES } from '../data/assets.js';
     letter-spacing: -0.02em;
   }
 
+  .about-services h2:hover {
+  color: var(--accent-primary);
+  text-shadow: 0 0 20px var(--accent-glow-strong), 0 0 8px var(--accent-primary);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+
   .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -596,6 +655,8 @@ import { IMAGES } from '../data/assets.js';
     font-size: 2.8rem;
     margin-bottom: 12px;
     display: block;
+    animation: floatIcon 3s ease-in-out infinite; 
+    
   }
 
   .service-card h3 {
@@ -866,7 +927,7 @@ import { IMAGES } from '../data/assets.js';
         <div class="container">
           <div class="section-header">
             <div class="section-badge">Core Principles</div>
-            <h2>Our Values</h2>
+            <h2 >Our Values</h2>
           </div>
           <div class="values-grid">
             <div class="value-card">
@@ -927,22 +988,22 @@ import { IMAGES } from '../data/assets.js';
           <h2>What We Do</h2>
           <div class="services-grid">
             <div class="service-card">
-              <div class="service-icon">📱</div>
+              <div class="value-icon service-icon">📱</div>
               <h3>Digital PR</h3>
               <p>Online media relations, influencer marketing, and reputation management.</p>
             </div>
             <div class="service-card">
-              <div class="service-icon">📊</div>
+              <div class="value-icon service-icon">📊</div>
               <h3>Social Media</h3>
               <p>Strategic social media management and community engagement.</p>
             </div>
             <div class="service-card">
-              <div class="service-icon">🎬</div>
+              <div class="value-icon service-icon">🎬</div>
               <h3>Video Production</h3>
               <p>Professional video content creation and live streaming services.</p>
             </div>
             <div class="service-card">
-              <div class="service-icon">💻</div>
+              <div class="value-icon service-icon">💻</div>
               <h3>Web Development</h3>
               <p>Custom website development and digital solutions.</p>
             </div>

@@ -87,11 +87,12 @@ def build_index():
             chunks = chunk_text(text)
             all_chunks.extend(chunks)
             metadata.extend([{"url": url}] * len(chunks))
-            # ---- Load local text files ----
-            local_chunks_with_meta = load_local_text_files(LOCAL_DATA_DIR)
-            for chunk_text_local, meta in local_chunks_with_meta:
-                all_chunks.append(chunk_text_local)
-                metadata.append(meta)
+            
+    # ---- Load local text files ----
+    local_chunks_with_meta = load_local_text_files(LOCAL_DATA_DIR)
+    for chunk_text_local, meta in local_chunks_with_meta:
+        all_chunks.append(chunk_text_local)
+        metadata.append(meta)
 
     print(f"Total chunks: {len(all_chunks)}")
 
