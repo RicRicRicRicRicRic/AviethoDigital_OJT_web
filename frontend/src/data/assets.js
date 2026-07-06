@@ -44,11 +44,19 @@ import iservm_ar from '../assets/icon/icon_serv_socmed_analyticsReporting.png'
 import icon_com from '../assets/icon/icon-commercial.png';
 import icon_corp from '../assets/icon/icon-corporate.png';
 import icon_doc from '../assets/icon/icon-documentary.png';
-import icon_ev from '../assets/icon/icon-event.png'
-import icon_pp_cg from '../assets/icon/icon_pp_colorgrading.png'
-import icon_pp_sd from '../assets/icon/icon_pp_sounddesign.png'
-import icon_pp_ve from '../assets/icon/icon_pp_videoedit.png'
-import icon_pp_ma from '../assets/icon/icon_pp_motion.png'
+import icon_ev from '../assets/icon/icon-event.png';
+import icon_pp_cg from '../assets/icon/icon_pp_colorgrading.png';
+import icon_pp_sd from '../assets/icon/icon_pp_sounddesign.png';
+import icon_pp_ve from '../assets/icon/icon_pp_videoedit.png';
+import icon_pp_ma from '../assets/icon/icon_pp_motion.png';
+import icon_ls_gg from '../assets/icon/icon_ls_gaming.png';
+import icon_ls_bus from '../assets/icon/icon_ls_business.png';
+import icon_ls_ent from '../assets/icon/icon_ls_ent.png';
+import icon_ls_live from '../assets/icon/icon_ls_live.png';
+import icon_spec_acc from '../assets/icon/icon_spec_acc.png'
+import icon_spec_drone from '../assets/icon/icon_spec_drone.png'
+import icon_spec_info from '../assets/icon/icon_spec_info.png'
+import icon_spec_seo from '../assets/icon/icon_spec_seo.png'
 
 //sliders
 import s1 from '../assets/imgs/slide1.jpg';
@@ -77,13 +85,18 @@ import vp_com from '../assets/imgs/vp_commercial.jpg';
 import vp_corp from '../assets/imgs/vp_corporate.jpg';
 import vp_doc from '../assets/imgs/vp_documentary.jpg';
 import vp_event from '../assets/imgs/vp_event.jpg';
-import pp_cg from '../assets/imgs/pp_colorGrading.jpg'
-import pp_mg from '../assets/imgs/pp_motionGraphics.jpg'
-import pp_sd from '../assets/imgs/pp_soundDesgin.jpg'
-import pp_ve from '../assets/imgs/pp_videoediting.jpg'
-
-
-
+import pp_cg from '../assets/imgs/pp_colorGrading.jpg';
+import pp_mg from '../assets/imgs/pp_motionGraphics.jpg';
+import pp_sd from '../assets/imgs/pp_soundDesgin.jpg';
+import pp_ve from '../assets/imgs/pp_videoediting.jpg';
+import ls_bus from '../assets/imgs/ls_business.jpg';
+import ls_ent from '../assets/imgs/ls_enterprise.jpg';
+import ls_gg from '../assets/imgs/ls_gaming.jpg';
+import ls_sms from '../assets/imgs/ls_scoial_media_streaming.jpg';
+import spec_dr from '../assets/imgs/spec_drone.jpg';
+import spec_acc from '../assets/imgs/spec_access.jpg';
+import spec_info from '../assets/imgs/spec_info.jpg';
+import spec_vid from '../assets/imgs/spec_vid.jpg';
 export const IMAGES = {
   logo: logoImage,
   heroBg: bg_bx1,
@@ -134,6 +147,14 @@ export const IMAGES = {
     icon_pp_sd,
     icon_pp_ve,
     icon_pp_ma,
+    icon_ls_gg,
+    icon_ls_bus,
+    icon_ls_ent,
+    icon_ls_live,
+    icon_spec_acc,
+    icon_spec_drone,
+    icon_spec_info,
+    icon_spec_seo,
   },
   slide:{
     s1,
@@ -166,6 +187,13 @@ export const IMAGES = {
     pp_mg,
     pp_sd,
     pp_ve,
+    ls_bus,
+    ls_ent,
+    ls_gg,
+    ls_sms,
+    spec_dr,
+    spec_acc,
+    spec_info,
+    spec_vid,
   },
-
 };

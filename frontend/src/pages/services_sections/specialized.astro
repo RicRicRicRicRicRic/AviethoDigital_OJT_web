@@ -1,0 +1,105 @@
+---
+import { IMAGES } from '../../data/assets.js';
+const services = IMAGES.page_services;
+const icons = IMAGES.icon;
+---
+
+<div class="container">
+  <div class="top-div">
+    <div class="box active" id="spec-box-1">
+      <img src={services.spec_dr.src} alt="Drone Videography" />
+      <div class="content"><h1>Drone Videography</h1><p>Capturing stunning aerial footage for unique perspectives and breathtaking views using state-of-the-art drone technology.</p></div>
+    </div>
+    <div class="box" id="spec-box-2">
+      <img src={services.spec_acc.src} alt="Accessibility Services" />
+      <div class="content"><h1>Accessibility Services</h1><p>Providing closed captioning, subtitles, and audio descriptions for videos to meet accessibility standards.</p></div>
+    </div>
+    <div class="box" id="spec-box-3">
+      <img src={services.spec_vid.src} alt="Video Marketing and SEO" />
+      <div class="content"><h1>Video Marketing and SEO</h1><p>Optimizing videos for search engines, analyzing video performance, and managing video advertising campaigns.</p></div>
+    </div>
+    <div class="box" id="spec-box-4">
+      <img src={services.spec_info.src} alt="Infographics and Infonarrative Videos" />
+      <div class="content"><h1>Infographics and Infonarrative Videos</h1><p>Creating visually appealing and informative graphics that convey complex information in an accessible format.</p></div>
+    </div>
+  </div>
+  
+  <div class="bottom-div">
+    <button class="active-btn" onclick="showBox('spec-box-1', this)"><img src={icons.icon_spec_drone.src} /></button>
+    <button onclick="showBox('spec-box-2', this)"><img src={icons.icon_spec_acc.src} /></button>
+    <button onclick="showBox('spec-box-3', this)"><img src={icons.icon_spec_seo.src} /></button>
+    <button onclick="showBox('spec-box-4', this)"><img src={icons.icon_spec_info.src} /></button>
+  </div>
+</div>
+
+
+<script is:inline>
+  function showBox(boxId, btnElement) {
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach(box => box.classList.remove('active'));
+    const buttons = document.querySelectorAll('.bottom-div button, .nav-buttons button');
+    buttons.forEach(btn => btn.classList.remove('active-btn'));
+    btnElement.classList.add('active-btn');
+    requestAnimationFrame(() => {
+      const target = document.getElementById(boxId);
+      if (target) target.classList.add('active');
+    });
+  }
+</script>
+
+<style>
+  .container { 
+    display: flex; flex-direction: column; gap: 20px; padding: 20px; align-items: center; 
+
+    .top-div { 
+      width: 100%; height: 400px !important; position: relative; overflow: hidden; 
+
+      .box {
+        box-sizing: border-box; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff;
+        display: flex; border-radius: 10px; overflow: hidden;
+        opacity: 0; transform: translateX(20px); pointer-events: none; z-index: 1;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        border: 1px solid #ddd;
+
+        &.active { opacity: 1; transform: translateX(0); pointer-events: auto; z-index: 2; }
+
+        &:not(.active) { transform: translateX(-20px); }
+
+        img { width: 50%; height: 100%; object-fit: cover; }
+
+        .content { 
+          width: 50%; padding: 20px; display: flex; flex-direction: column; justify-content: center; 
+          background-color: #252728; 
+          padding-right: 20px;
+          h1 { color: #ffaa66 !important; } 
+          p {color: #94a3b8;}
+          
+        }
+      }
+    }
+
+    .bottom-div { 
+      display: flex; gap: 30px; height: 100px; align-items: center; 
+
+      button {
+        padding: 35px; cursor: pointer; height: 60px; width: 60px;
+        background:#ffaa66 ; border: 3px solid #ffaa66; border-radius: 40px;
+        transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+
+        img { 
+          width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1); transition: filter 0.3s ease;
+        }
+      }
+
+      button.active-btn {
+        background: rgba(255, 170, 102, 0.3); border: 3px solid #ffaa66;
+        img { filter: brightness(1) invert(0); }
+      }
+
+      button:hover {
+        background: #ffaa66; box-shadow: 0 0 15px #ffaa66;
+        img { filter: brightness(1) invert(0); }
+      }
+    }
+  }
+</style>
