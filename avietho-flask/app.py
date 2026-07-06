@@ -6,12 +6,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from sentence_transformers import SentenceTransformer
 import chromadb
-import google.generativeai as genai
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 app = Flask(__name__)
 CORS(app)
@@ -19,11 +13,8 @@ CORS(app)
 # ---------- CONFIG ----------
 DB_PATH = "./avietho_chroma"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-genai.configure(api_key=GOOGLE_API_KEY)
-model = genai.GenerativeModel('gemini-3.5-flash')   # fast and free tier friendly
 # ----------------------------
 
-# Global variables for the model and DB (lazy loaded)
 embedding_model = None
 chroma_client = None
 collection = None
@@ -35,7 +26,7 @@ def init_model():
         chroma_client = chromadb.PersistentClient(path=DB_PATH)
         collection = chroma_client.get_or_create_collection("avietho_pages")
 
-# ----- Training endpoint (unchanged) -----
+# ----- Training endpoint -----
 training_status = {"running": False, "message": "Not started"}
 
 def run_training():
@@ -45,7 +36,6 @@ def run_training():
     try:
         subprocess.run([sys.executable, "train_model.py"], check=True)
         training_status["message"] = "Training completed successfully."
-        # Reload the collection to pick up new data
         if chroma_client:
             collection = chroma_client.get_collection("avietho_pages")
     except subprocess.CalledProcessError as e:
@@ -65,72 +55,72 @@ def start_training():
 def get_status():
     return jsonify(training_status)
 
-# ----- Chat endpoint -----
+# ----- Chat endpoint (retrieval‑only) -----
 @app.route('/chat', methods=['POST'])
 def chat():
     init_model()
     data = request.get_json()
-    user_message = data.get('message', '')
+    user_message = data.get('message', '').strip().lower()
     if not user_message:
         return jsonify({"reply": "Please provide a message."}), 400
 
     # 1. Embed the question
     question_embedding = embedding_model.encode([user_message])[0]
 
-    # 2. Retrieve top 3 relevant chunks
+    # 2. Retrieve top 3 candidates (more choices for re‑ranking)
     results = collection.query(
         query_embeddings=[question_embedding.tolist()],
         n_results=3,
         include=["documents", "metadatas"]
     )
-    contexts = results['documents'][0]  # list of strings
+    candidates = results['documents'][0]
 
-    # 3. Build a prompt with the context
-    context_text = "\n\n".join(contexts)
-    prompt = f"""You are a helpful assistant that answers questions about Avietho, a digital marketing company.
-    Use only the following context to answer the question. If you can't find the answer, say you don't know.
+    # 3. Keyword‑based re‑ranking
+    # Define keywords for common topics (extend as you like)
+    topic_keywords = {
+        "contact": ["contact", "email", "messenger", "message", "phone", "address", "inquiries"],
+        "social": ["facebook", "instagram", "linkedin", "tiktok", "twitter", "youtube", "social media"],
+        "services": ["service", "offer", "we do", "digital pr", "video", "web development"],
+        "about": ["about", "founder", "history", "avietho", "founded", "siblings"],
+        "values": ["values", "mission", "vision", "principle", "excellence"],
+        "clients": ["clients", "political", "government", "businesses"],
+    }
 
-    Context:
-    {context_text}
+    best_chunk = None
+    # First, try to find a chunk that contains the user's query words directly
+    for chunk in candidates:
+        if not chunk.strip():
+            continue
+        # Check if the chunk contains any of the keywords relevant to the user's message
+        for category, words in topic_keywords.items():
+            if any(word in user_message for word in words):
+                # The user asked about this category → see if this chunk matches
+                if any(word in chunk.lower() for word in words):
+                    best_chunk = chunk
+                    break
+        if best_chunk:
+            break
 
-    Question: {user_message}
+    # Fallback: use the first (most similar) chunk if no keyword match found
+    if best_chunk is None:
+        best_chunk = candidates[0] if candidates else ""
 
-    Instructions:
-    - Answer in clear, well-structured English.
-    - Use proper paragraphs and, if helpful, bullet points.
-    - Keep the tone professional and friendly.
-    - Do **not** use any Markdown formatting (like bold `**text**` or italics `*text*`). Just plain text.
-    - Preserve any list formatting from the context (like bullet points or numbered items).
+    # 4. Build the reply
+    if not best_chunk or len(best_chunk.strip()) == 0:
+        reply = "I don't have enough information to answer that."
+    else:
+        reply = best_chunk.strip()
 
-    Answer:"""
-
-    try:
-        # Gemini expects a prompt (or a list of messages)
-        response = model.generate_content(prompt)
-        reply = response.text.strip()
-
-        uncertainty_phrases = [
-            "i don't know",
-            "i do not know",
-            "i couldn't find",
-            "i cannot answer",
-            "sorry",
-            "unable to provide",
-            "no information",
-        ]
-        if any(phrase in reply.lower() for phrase in uncertainty_phrases):
-            reply += (
-                "\n\n📧 For further inquiries, please email us at "
-                "info@aviethodigital.com or message us on Messenger: "
-                "https://m.me/AviethoDigital"
-            )
-
-    except Exception as e:
-        reply = f"Error calling Gemini: {e}"
+    # 5. Fallback contact info if still uncertain
+    if "I don't have enough information" in reply:
+        reply += (
+            "\n\n📧 For further inquiries, please email us at "
+            "info@aviethodigital.com or message us on Messenger: "
+            "https://m.me/AviethoDigital"
+        )
 
     return jsonify({"reply": reply})
-    
 
 if __name__ == '__main__':
-    init_model()   # preload on startup (optional)
+    init_model()
     app.run(debug=True, port=5000)

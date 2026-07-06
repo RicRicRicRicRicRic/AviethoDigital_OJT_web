@@ -1,107 +1,137 @@
-AVIETHO DIGITAL 
+=== ABOUT AVIETHO ===
 
-COMPANY OVERVIEW
+Avietho Digital is a full‑service digital marketing agency based in Muntinlupa City, Philippines. The company was founded in 2018 by four siblings of Milarosa and George, and the name "Avietho" is derived from the first two letters of their names: AV, IE, TH, O.
 
-Company Name: Avietho Digital
+Avietho empowers brands, political figures, government agencies, and businesses with innovative, data‑driven digital strategies tailored specifically for the Philippine market. The agency combines journalism, branding, public relations, multimedia production, social media marketing, and web development under one roof.
 
-Websites: https://aviethodigital.com/
-https://marketing.aviethodigital.com/
+Over the years, Avietho has completed more than 100 projects and served over 50 happy clients, ranging from small local businesses to high‑profile political campaigns and government departments.
 
-Industry: - Digital Media - Digital Marketing - Public Relations -
-Multimedia Production - Web Development - News Publishing
+=== CORE VALUES ===
 
-Headquarters: Admiralty Building 1101 Alabang-Zapote Road Madrigal
-Business Park Ayala Alabang Muntinlupa City, Philippines
+Avietho operates on four core principles:
 
-Founded: 2018
+- Strategic Excellence – every campaign is built on data and analytics, with a clear focus on measurable ROI and performance.
+- Innovation – the team continuously explores the latest digital trends, tools, and platforms to keep clients ahead of the competition.
+- Partnership – long‑term relationships are the foundation of the agency. Trust, transparency, and collaboration are central to every project.
+- Local Expertise – deep understanding of the Philippine market, cultural nuances, and consumer behaviour ensures campaigns resonate with the target audience.
 
-ABOUT
+=== SERVICES ===
 
-Avietho Digital is an independent Filipino digital media network and
-digital marketing agency that combines journalism, branding, public
-relations, multimedia production, social media marketing, and web
-development.
+Avietho offers a complete suite of digital marketing services:
 
-Slogan: “Innovate, Create and Connect.”
+Digital PR
+- Online media relations and press release distribution
+- Influencer marketing and brand collaborations
+- Reputation management and crisis communication
 
-SERVICES
+Social Media Management
+- Full‑service management of Facebook, Instagram, Twitter, LinkedIn, TikTok, and YouTube
+- Community engagement and comment moderation
+- Monthly analytics and performance reports
+- Content calendar planning and creative copywriting
 
--   Public Relations
--   Digital Marketing
--   Social Media Marketing
--   Website Development
--   SEO
--   Branding
--   Graphic Design
--   Photography
--   Videography
--   Live Streaming
--   Video Editing
--   Content Creation
--   Online Reputation Management
--   Influencer Marketing
+Video Production
+- Professional video shooting and editing for commercials, social media, and corporate presentations
+- Live streaming setup and support for virtual events
+- Motion graphics, animation, and post‑production
 
-TECHNOLOGY STACK
+Web Development
+- Custom website design and development (WordPress, Shopify, custom CMS)
+- E‑commerce solutions
+- UX/UI design and mobile responsiveness
 
-Frontend: React Next.js Tailwind CSS TypeScript
+Political Campaign Management
+- End‑to‑end digital campaign strategy for candidates and political parties
+- Social listening and sentiment analysis
+- Content creation, ad buying, and voter engagement
 
-Backend: Node.js Python Java PHP
+Government Digital Transformation
+- Modernising public communication and citizen engagement through digital tools
+- Website development, chatbots, and social media strategies for government agencies
 
-Database: PostgreSQL MongoDB
+Multimedia Production
+- Graphic design for branding, print, and digital
+- Audio production and podcast creation
+- Photography and photo editing
 
-Cloud: AWS Vercel
+=== OUR CLIENTS ===
 
-Tools: WordPress Shopify Figma Google Analytics
+Avietho serves three main client categories:
 
-TEAM
+- Political Figures – strategic digital campaigns for election periods, helping candidates build strong online presence and connect with voters.
+- Government Agencies – digital transformation projects, public information campaigns, and citizen engagement platforms.
+- Businesses – comprehensive digital marketing solutions for SMEs and large enterprises, including branding, lead generation, and e‑commerce support.
 
-Rickie Javier - Editor-in-Chief - Public Relations Specialist - Social
-Media Manager
+=== OUR PROJECTS ===
 
-Migz Junsay - Creative Director
+The agency has successfully delivered projects such as:
 
-Jojo Bayais - Photographer
+- A national social media campaign for a senatorial candidate, reaching over 5 million Filipinos.
+- Full rebranding and website redesign for a government agency, increasing public inquiries by 40%.
+- Launching a TikTok‑first campaign for a local fashion brand, resulting in 2 million views in one month.
+- Producing a series of viral video ads for a real estate developer, generating 10,000+ qualified leads.
 
-Mike Manuel - Videographer & Photographer
+=== TEAM & FOUNDERS ===
 
-CLIENTS
+Avietho was founded by the four siblings of Milarosa and George. Each sibling brought a unique skill set:
 
--   Businesses
--   Government Agencies
--   LGUs
--   Organizations
--   Beauty Pageants
--   Tourism Campaigns
--   Corporate Brands
+- One sibling specialised in journalism and public relations.
+- Another had a background in branding and creative design.
+- A third sibling contributed expertise in multimedia and video production.
+- The fourth sibling focused on web development and digital strategy.
 
-SOCIAL LINKS
+Together, they built a holistic agency that covers every aspect of digital marketing. The team has since grown to include social media managers, graphic designers, video editors, copywriters, and data analysts.
 
-Website: https://aviethodigital.com/
+=== CONTACT INFORMATION ===
 
-Marketing: https://marketing.aviethodigital.com/
+For inquiries, partnerships, or service requests:
 
-LinkedIn: https://ph.linkedin.com/in/avietho-digital-806078360
+- Email: info@aviethodigital.com
+- Messenger: https://m.me/AviethoDigital
 
-Facebook: https://www.facebook.com/AviethoDigital
+Office Address (Muntinlupa City, Philippines) – available upon request.
 
-Instagram: https://www.instagram.com/aviethodigital
+=== SOCIAL MEDIA & WEBSITES ===
 
-YouTube: https://www.youtube.com/@AviethoDigital
+Main Website: https://aviethodigital.com
+Marketing Services Site: https://marketing.aviethodigital.com
 
-TikTok: https://www.tiktok.com/@aviethodigital
+Social Media Profiles:
+- LinkedIn: https://ph.linkedin.com/in/avietho-digital-806078360
+- Facebook: https://www.facebook.com/AviethoDigital
+- Instagram: https://www.instagram.com/aviethodigital
+- YouTube: https://www.youtube.com/@AviethoDigital
+- TikTok: https://www.tiktok.com/@aviethodigital
+- X (Twitter): https://x.com/aviethodigital
 
-X: https://x.com/aviethodigital
+=== MISSION & VISION ===
 
-CONTACT
+Mission:
+To empower Filipino brands, leaders, and organisations through creative, data‑driven digital solutions that deliver measurable impact.
 
-Phone: +63 9783 1987
+Vision:
+To be the most trusted digital marketing partner in the Philippines, known for innovation, integrity, and results that transform how organisations connect with their audiences.
 
-Email: marketing.avietho@gmail.com aviethodigital@gmail.com
+=== FAQ: What is Avietho Digital? ===
+Avietho is a full‑service digital marketing agency founded in 2018 by four siblings in Muntinlupa City, Philippines. The name "Avietho" comes from the first two letters of the founders' names.
 
-SUMMARY
+=== FAQ: What services does Avietho offer? ===
+Digital PR, social media management, video production, web development, political campaign management, government digital transformation, and multimedia production.
 
-Avietho Digital is a Philippine-based digital media network and
-full-service digital marketing agency offering journalism, public
-relations, branding, multimedia production, social media management, and
-website development using modern technologies including React, Next.js,
-Node.js, Python, PostgreSQL, MongoDB, AWS, and WordPress.
+=== FAQ: Who founded Avietho? ===
+The four siblings of Milarosa and George, whose names form the word "Avietho".
+
+=== FAQ: Where is Avietho located? ===
+The agency is based in Muntinlupa City, Philippines, and serves clients nationwide.
+
+=== FAQ: How can I contact Avietho? ===
+You can email info@aviethodigital.com or send a message via Facebook Messenger at https://m.me/AviethoDigital.
+
+=== FAQ: What are Avietho's core values? ===
+Strategic Excellence, Innovation, Partnership, and Local Expertise.
+
+=== FAQ: Does Avietho handle political campaigns? ===
+Yes, Avietho specialises in political campaign management, including social listening, content creation, and digital ad strategy for candidates and parties.
+
+=== FAQ: What social media platforms is Avietho on? ===
+Facebook, Instagram, LinkedIn, YouTube, TikTok, and X (Twitter). Full links are available in the Social Media & Websites section.
