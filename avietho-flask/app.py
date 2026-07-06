@@ -55,7 +55,6 @@ def start_training():
 def get_status():
     return jsonify(training_status)
 
-# ----- Chat endpoint (retrieval‑only) -----
 @app.route('/chat', methods=['POST'])
 def chat():
     init_model()
