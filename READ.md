@@ -4,6 +4,7 @@
 
 - cd avietho-flask
 - venv\Scripts\activate
+- python train_model.py
 - python app.py
 
 ## 2. Start the Flask server
