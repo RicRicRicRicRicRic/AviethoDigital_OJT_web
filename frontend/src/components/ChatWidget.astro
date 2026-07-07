@@ -92,7 +92,7 @@
 </script>
 
 <style is:global>
-  /* ========== Chat Widget Styles: Modern Dark Theme ========== */
+  /* ========== Chat Widget Styles – Theme-Aware ========== */
 
   /* Floating Icon */
   #chat-icon {
@@ -101,202 +101,109 @@
     right: 24px;
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #f8b013, #917600);
+    background: var(--theme-accent);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 6px 20px rgba(255, 155, 23, 0.986);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     z-index: 9999;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   #chat-icon:hover {
-    transform: scale(1.08) rotate(-4deg);
-    box-shadow: 0 8px 28px rgba(255, 155, 23, 0.986);
-  }
-  #chat-icon svg {
-    width: 30px;
-    height: 30px;
-    stroke: #fff;
-    stroke-width: 2.2;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    transform: scale(1.08);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
   }
 
   /* Chat Window */
   #chat-window {
     position: fixed;
-    bottom: 24px;
+    bottom: 100px;
     right: 24px;
     width: 380px;
-    height: 500px;
-    background: #1e1e2f;
+    height: 520px;
+    background: var(--theme-bg);
+    color: #fff;
     border-radius: 20px;
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
     display: none;
     flex-direction: column;
     z-index: 10000;
     overflow: hidden;
-    backdrop-filter: blur(2px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    animation: fadeSlideUp 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
   }
 
-  @keyframes fadeSlideUp {
-    from { opacity: 0; transform: translateY(20px) scale(0.96); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-  }
-
-  /* Header */
   #chat-header {
-    background: linear-gradient(135deg, #c08609, #f1c122);
+    background: var(--theme-accent);
     color: #fff;
     padding: 14px 20px;
     display: flex;
     align-items: center;
     gap: 12px;
-    cursor: grab;
-    user-select: none;
     font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: 0.3px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     flex-shrink: 0;
   }
-  #chat-header .avatar {
-    width: 32px;
-    height: 32px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-  }
-  #chat-header span {
-    flex: 1;
-  }
-  #chat-close-btn {
-    background: rgba(255,255,255,0.12);
-    border: none;
-    color: #fff;
-    font-size: 22px;
-    cursor: pointer;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-    line-height: 1;
-  }
-  #chat-close-btn:hover {
-    background: rgba(255,255,255,0.25);
-  }
 
-  /* Messages Area */
   #chat-messages {
     flex: 1;
-    padding: 16px 14px;
+    padding: 16px;
     overflow-y: auto;
-    background: linear-gradient(135deg, #442e0e, #a08734);
+    background: color-mix(in srgb, var(--theme-bg), #111 70%);
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    scroll-behavior: smooth;
-  }
-  #chat-messages::-webkit-scrollbar {
-    width: 4px;
-  }
-  #chat-messages::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  #chat-messages::-webkit-scrollbar-thumb {
-    background: #ca9d07;
-    border-radius: 8px;
+    gap: 12px;
   }
 
-  /* Message Bubbles */
   .chat-msg {
     max-width: 80%;
-    padding: 10px 16px;
+    padding: 12px 16px;
     border-radius: 18px;
     line-height: 1.5;
-    word-wrap: break-word;
-    white-space: pre-wrap; 
-    font-size: 0.95rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     animation: msgPop 0.2s ease;
-  }
-  @keyframes msgPop {
-    from { opacity: 0; transform: scale(0.92); }
-    to   { opacity: 1; transform: scale(1); }
   }
   .user-msg {
     align-self: flex-end;
-    background: #e4990d;
-    color: #e8e8f0;
-    border-bottom-left-radius: 4px;
-    border: 1px solid #3a3a4e;
+    background: var(--theme-accent);
+    color: #fff;
   }
   .bot-msg {
     align-self: flex-start;
-    background: #e4990d;
-    color: #e8e8f0;
-    border-bottom-left-radius: 4px;
-    border: 1px solid #3a3a4e;
-  }
-  .bot-msg .dots-animation {
-    display: inline-block;
-    min-width: 20px;
+    background: #333;
+    color: #ddd;
   }
 
-  /* Input Area */
   #chat-input-area {
     display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    border-top: 1px solid #2a2a3e;
-    background: linear-gradient(135deg, #c08609, #f1c122);
-    flex-shrink: 0;
-    gap: 10px;
+    padding: 12px;
+    background: var(--theme-bg);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    gap: 8px;
   }
+
   #chat-input {
     flex: 1;
-    padding: 10px 16px;
-    border: 1px solid #3a3a52;
-    border-radius: 30px;
+    padding: 12px 16px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
     outline: none;
-    background: #25253a;
-    color: #f0f0f8;
-    font-size: 0.95rem;
-    transition: border-color 0.2s;
   }
-  #chat-input:focus {
-    border-color: #6c5ce7;
-    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.25);
-  }
-  #chat-input::placeholder {
-    color: #7a7a9a;
-  }
+
   #chat-send-btn {
-    padding: 10px 20px;
-    background: linear-gradient(135deg, #aa7503, #f1a025);
+    padding: 12px 24px;
+    background: var(--theme-accent);
     color: #fff;
     border: none;
-    border-radius: 30px;
+    border-radius: 9999px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.95rem;
-    transition: box-shadow 0.2s, transform 0.15s;
-    white-space: nowrap;
   }
-  #chat-send-btn:hover {
-    box-shadow: 0 4px 16px rgba(108, 92, 231, 0.5);
-    transform: scale(1.02);
-  }
-  #chat-send-btn:active {
-    transform: scale(0.96);
+
+  @keyframes msgPop {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>

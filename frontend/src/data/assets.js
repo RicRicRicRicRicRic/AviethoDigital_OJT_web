@@ -59,6 +59,8 @@ import icon_spec_acc from '../assets/icon/icon_spec_acc.png'
 import icon_spec_drone from '../assets/icon/icon_spec_drone.png'
 import icon_spec_info from '../assets/icon/icon_spec_info.png'
 import icon_spec_seo from '../assets/icon/icon_spec_seo.png'
+import paletteIcon from '../assets/icon/palette_icon.png'
+
 
 //sliders
 import s1 from '../assets/imgs/slide1.jpg';
@@ -102,7 +104,6 @@ import vid_marketing from '../assets/imgs/vid_marketing.jpg';
 import vid_marketing_back from '../assets/imgs/vid_marketing_back.jpg';
 import com_ad from '../assets/imgs/com_ad.jpg';
 import com_ad_back from '../assets/imgs/com_ad_back.jpg';
-
 
 
 import serv_socmed_cc from '../assets/imgs/serv_socmed_contentCreation.jpg'
@@ -186,6 +187,7 @@ export const IMAGES = {
     icon_spec_drone,
     icon_spec_info,
     icon_spec_seo,
+    paletteIcon,
   },
   slide:{
     s1,

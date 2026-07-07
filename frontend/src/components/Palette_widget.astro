@@ -1,0 +1,125 @@
+---
+import { IMAGES } from '../data/assets.js'; 
+
+// Data: [widgetBgColor, circle1, circle2, iconFilterString]
+// We keep the filter strings that map specifically to the target secondary colors
+const palettes = [
+  { name: "Default", colors: ["#000000", "#000000", "#FFBC85"], filter: "none" },
+  { name: "Dark Slate & Cool Gray", colors: ["#2C3E50", "#2C3E50", "#8C92AC"], filter: "brightness(0) saturate(100%) invert(67%) sepia(11%) saturate(543%) hue-rotate(185deg) brightness(91%) contrast(85%)" },
+  { name: "Charcoal Gray & Bright Violet", colors: ["#36454F", "#36454F", "#8A2BE2"], filter: "brightness(0) saturate(100%) invert(23%) sepia(87%) saturate(6325%) hue-rotate(264deg) brightness(98%) contrast(101%)" },
+  { name: "Deep Forest Green & Warm Cream", colors: ["#0B6623", "#0B6623", "#F5F5DC"], filter: "brightness(0) saturate(100%) invert(95%) sepia(16%) saturate(302%) hue-rotate(34deg) brightness(104%) contrast(93%)" },
+  { name: "Midnight Blue & Electric Lime", colors: ["#191970", "#191970", "#CCFF00"], filter: "brightness(0) saturate(100%) invert(86%) sepia(83%) saturate(1219%) hue-rotate(35deg) brightness(101%) contrast(103%)" },
+  { name: "Deep Burgundy & Soft Blush", colors: ["#800020", "#800020", "#FFC0CB"], filter: "brightness(0) saturate(100%) invert(83%) sepia(21%) saturate(768%) hue-rotate(299deg) brightness(105%) contrast(101%)" }
+];
+---
+
+<div id="palette-widget" class="palette-widget">
+  <div id="palette-icon" class="palette-icon" style={`background-image: url(${IMAGES.icon.paletteIcon.src});`}></div>
+  <div id="palette-menu" class="palette-menu hidden">
+    {palettes.map(p => (
+      <div class="menu-item" data-colors={JSON.stringify(p.colors)} data-filter={p.filter}>
+        <div class="color-circle" style={`background: linear-gradient(to right, ${p.colors[1]} 50%, ${p.colors[2]} 50%);`}></div>
+        {p.name}
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  const w = document.getElementById('palette-widget') as HTMLElement;
+  const icon = document.getElementById('palette-icon') as HTMLElement;
+  const m = document.getElementById('palette-menu') as HTMLElement;
+  let isDragging = false, offset = { x: 0, y: 0 };
+
+  m.addEventListener('click', (e) => {
+    const item = (e.target as HTMLElement).closest('.menu-item');
+    if (item) {
+      const colors = JSON.parse(item.getAttribute('data-colors')!);
+      const filter = item.getAttribute('data-filter')!;
+      
+      w.style.backgroundColor = colors[0];
+      w.style.boxShadow = `0 0 14px ${colors[2]}`;
+      // Apply the filter to target the secondary color (the 3rd item in the array)
+      icon.style.filter = filter; 
+
+      // Update Global CSS Variables
+      document.documentElement.style.setProperty('--theme-bg', colors[0]);
+      document.documentElement.style.setProperty('--theme-accent', colors[2]);
+      // Create a semi-transparent version for the active button state
+      document.documentElement.style.setProperty('--theme-active', colors[2] + 'BF'); 
+      
+      m.classList.add('hidden');
+    }
+  });
+
+  const updateMenu = () => {
+    const r = w.getBoundingClientRect(), mr = m.getBoundingClientRect();
+    m.style.top = r.top + 80 + mr.height > window.innerHeight ? 'auto' : '80px';
+    m.style.bottom = r.top + 80 + mr.height > window.innerHeight ? '80px' : 'auto';
+    m.style.left = r.left + mr.width > window.innerWidth ? 'auto' : '0';
+    m.style.right = r.left + mr.width > window.innerWidth ? '0' : 'auto';
+  };
+
+  const move = (clientX: number, clientY: number) => {
+    if (!isDragging) return;
+    const x = Math.max(0, Math.min(clientX - offset.x, window.innerWidth - w.offsetWidth));
+    const y = Math.max(0, Math.min(clientY - offset.y, window.innerHeight - w.offsetHeight));
+    w.style.cssText += `left:${x}px; top:${y}px; right:auto; bottom:auto;`;
+    if (!m.classList.contains('hidden')) updateMenu();
+  };
+
+  w.addEventListener('dblclick', () => {
+    m.classList.toggle('hidden');
+    if (!m.classList.contains('hidden')) updateMenu();
+  });
+
+  document.addEventListener('click', (e) => { if (!w.contains(e.target as Node)) m.classList.add('hidden'); });
+
+  w.addEventListener('mousedown', (e: any) => {
+    if (e.target !== w && e.target !== icon) return;
+    isDragging = true;
+    offset = { x: e.clientX - w.offsetLeft, y: e.clientY - w.offsetTop };
+    w.style.cursor = 'grabbing';
+  });
+
+  document.addEventListener('mousemove', (e) => move(e.clientX, e.clientY));
+  document.addEventListener('mouseup', () => { isDragging = false; w.style.cursor = 'grab'; });
+  w.addEventListener('touchstart', (e: any) => {
+    isDragging = true;
+    offset = { x: e.touches[0].clientX - w.offsetLeft, y: e.touches[0].clientY - w.offsetTop };
+  }, { passive: true });
+  document.addEventListener('touchmove', (e) => move(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+  document.addEventListener('touchend', () => isDragging = false);
+</script>
+
+<style>
+  .palette-widget {
+    position: fixed; top: 2rem; left: 2rem; z-index: 9999; width: 70px; height: 70px; border-radius: 50%;
+    background: #000000; box-shadow: 0 0 14px #ffab66; cursor: grab; user-select: none; touch-action: none;
+    transition: transform 0.1s, background-color 0.2s, box-shadow 0.2s;
+
+    &:hover { filter: brightness(1.2); }
+    &:active { transform: scale(0.95); }
+
+    .palette-icon {
+      width: 100%; height: 100%; background-repeat: no-repeat; background-position: center;
+      background-size: 55%; transition: filter 0.3s;
+    }
+
+    .palette-menu {
+      position: absolute; top: 80px; left: 0; background: white; color: black; padding: 10px;
+      border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); width: 290px; z-index: 10000;
+
+      &.hidden { display: none; }
+      .menu-item {
+        display: flex; align-items: center; gap: 10px; padding: 8px; cursor: pointer;
+        font-size: 14px; border-bottom: 1px solid #eee;
+        &:hover { background-color: #f0f0f0; }
+
+        .color-circle {
+          width: 16px; height: 16px; border-radius: 50%; border: 1px solid #ddd;
+        }
+      }
+    }
+  }
+</style>
