@@ -46,7 +46,7 @@ const partners = IMAGES.partners;
       </button>
     </div>
 
-    <div class="right-section">
+    <div class="right-section apply-filter">
       <h2 class="section-title">Clients and Partners</h2>
     
       <div class="slideshow-container">
@@ -109,7 +109,7 @@ const partners = IMAGES.partners;
         font-size: 1.75rem;
         font-weight: 700;
         margin-bottom: 2.5rem;
-        color: #ffaa66;
+        color: var(--theme-accent);
         text-shadow: 0 0 10px rgba(255, 170, 102, 0.3);
         opacity: 0;
         transition: opacity 0.75s ease-in-out;
@@ -123,7 +123,7 @@ const partners = IMAGES.partners;
         font-size: 1.1rem;
         font-weight: 700;
         color: #ffffff;
-        background: linear-gradient(135deg, #ff7b00 0%, #ffaa66 100%);
+        background: linear-gradient(135deg, var(--theme-accent) 0%, #ffaa66 100%);
         border: none;
         border-radius: 50px;
         cursor: pointer;
@@ -150,11 +150,12 @@ const partners = IMAGES.partners;
       overflow: hidden;
       flex-shrink: 0;
       margin-right: 8rem;
+      transition: filter 0.5s ease;
 
       .section-title {
         font-size: 2rem;
         font-weight: 600;
-        color: #ffffff;
+        color: var(--theme-accent);
         margin: 0 0 2rem;
         text-transform: uppercase;
         letter-spacing: 1.5px;

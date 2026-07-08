@@ -1,8 +1,7 @@
 ---
 import { IMAGES } from '../data/assets.js'; 
 
-// Data: [widgetBgColor, circle1, circle2, iconFilterString]
-// We keep the filter strings that map specifically to the target secondary colors
+// Data: [widgetBgColor
 const palettes = [
   { name: "Default", colors: ["#000000", "#000000", "#FFBC85"], filter: "none" },
   { name: "Dark Slate & Cool Gray", colors: ["#2C3E50", "#2C3E50", "#8C92AC"], filter: "brightness(0) saturate(100%) invert(67%) sepia(11%) saturate(543%) hue-rotate(185deg) brightness(91%) contrast(85%)" },
@@ -31,22 +30,31 @@ const palettes = [
   const m = document.getElementById('palette-menu') as HTMLElement;
   let isDragging = false, offset = { x: 0, y: 0 };
 
+  const applyPalette = (colors: string[], filter: string) => {
+    w.style.backgroundColor = colors[0];
+    w.style.boxShadow = `0 0 14px ${colors[2]}`;
+    icon.style.filter = filter;
+
+    document.documentElement.style.setProperty('--theme-bg', colors[0]);
+    document.documentElement.style.setProperty('--theme-accent', colors[2]);
+    document.documentElement.style.setProperty('--theme-active', colors[2] + 'BF');
+  };
+
+  // Load saved palette on init
+  const saved = localStorage.getItem('site-palette');
+  if (saved) {
+    const { colors, filter } = JSON.parse(saved);
+    applyPalette(colors, filter);
+  }
+
   m.addEventListener('click', (e) => {
     const item = (e.target as HTMLElement).closest('.menu-item');
     if (item) {
       const colors = JSON.parse(item.getAttribute('data-colors')!);
       const filter = item.getAttribute('data-filter')!;
       
-      w.style.backgroundColor = colors[0];
-      w.style.boxShadow = `0 0 14px ${colors[2]}`;
-      // Apply the filter to target the secondary color (the 3rd item in the array)
-      icon.style.filter = filter; 
-
-      // Update Global CSS Variables
-      document.documentElement.style.setProperty('--theme-bg', colors[0]);
-      document.documentElement.style.setProperty('--theme-accent', colors[2]);
-      // Create a semi-transparent version for the active button state
-      document.documentElement.style.setProperty('--theme-active', colors[2] + 'BF'); 
+      applyPalette(colors, filter);
+      localStorage.setItem('site-palette', JSON.stringify({ colors, filter }));
       
       m.classList.add('hidden');
     }
