@@ -1,14 +1,13 @@
 ---
 import { IMAGES } from '../data/assets.js'; 
 
-// Data: [widgetBgColor
 const palettes = [
-  { name: "Default", colors: ["#000000", "#000000", "#FFBC85"], filter: "none" },
-  { name: "Dark Slate & Cool Gray", colors: ["#2C3E50", "#2C3E50", "#8C92AC"], filter: "brightness(0) saturate(100%) invert(67%) sepia(11%) saturate(543%) hue-rotate(185deg) brightness(91%) contrast(85%)" },
-  { name: "Charcoal Gray & Bright Violet", colors: ["#36454F", "#36454F", "#8A2BE2"], filter: "brightness(0) saturate(100%) invert(23%) sepia(87%) saturate(6325%) hue-rotate(264deg) brightness(98%) contrast(101%)" },
-  { name: "Deep Forest Green & Warm Cream", colors: ["#0B6623", "#0B6623", "#F5F5DC"], filter: "brightness(0) saturate(100%) invert(95%) sepia(16%) saturate(302%) hue-rotate(34deg) brightness(104%) contrast(93%)" },
-  { name: "Midnight Blue & Electric Lime", colors: ["#191970", "#191970", "#CCFF00"], filter: "brightness(0) saturate(100%) invert(86%) sepia(83%) saturate(1219%) hue-rotate(35deg) brightness(101%) contrast(103%)" },
-  { name: "Deep Burgundy & Soft Blush", colors: ["#800020", "#800020", "#FFC0CB"], filter: "brightness(0) saturate(100%) invert(83%) sepia(21%) saturate(768%) hue-rotate(299deg) brightness(105%) contrast(101%)" }
+  { name: "Default", colors: ["#000000", "#000000", "#FFBC85"], filter: "none", hero: IMAGES.hero.heroBg.src },
+  { name: "Dark Slate & Cool Gray", colors: ["#2C3E50", "#2C3E50", "#8C92AC"], filter: "brightness(0) saturate(100%) invert(67%) sepia(11%) saturate(543%) hue-rotate(185deg) brightness(91%) contrast(85%)", hero: IMAGES.hero.darkSlateGray?.src || IMAGES.hero.heroBg.src },
+  { name: "Charcoal Gray & Bright Violet", colors: ["#36454F", "#36454F", "#8A2BE2"], filter: "brightness(0) saturate(100%) invert(23%) sepia(87%) saturate(6325%) hue-rotate(264deg) brightness(98%) contrast(101%)", hero: IMAGES.hero.charcoalViolet?.src || IMAGES.hero.heroBg.src },
+  { name: "Deep Forest Green & Warm Cream", colors: ["#0B6623", "#0B6623", "#F5F5DC"], filter: "brightness(0) saturate(100%) invert(95%) sepia(16%) saturate(302%) hue-rotate(34deg) brightness(104%) contrast(93%)", hero: IMAGES.hero.forestCream?.src || IMAGES.hero.heroBg.src },
+  { name: "Midnight Blue & Electric Lime", colors: ["#191970", "#191970", "#CCFF00"], filter: "brightness(0) saturate(100%) invert(86%) sepia(83%) saturate(1219%) hue-rotate(35deg) brightness(101%) contrast(103%)", hero: IMAGES.hero.midnightLime?.src || IMAGES.hero.heroBg.src },
+  { name: "Deep Burgundy & Soft Blush", colors: ["#800020", "#800020", "#FFC0CB"], filter: "brightness(0) saturate(100%) invert(83%) sepia(21%) saturate(768%) hue-rotate(299deg) brightness(105%) contrast(101%)", hero: IMAGES.hero.burgundyBlush?.src || IMAGES.hero.heroBg.src }
 ];
 ---
 
@@ -16,7 +15,7 @@ const palettes = [
   <div id="palette-icon" class="palette-icon" style={`background-image: url(${IMAGES.icon.paletteIcon.src});`}></div>
   <div id="palette-menu" class="palette-menu hidden">
     {palettes.map(p => (
-      <div class="menu-item" data-colors={JSON.stringify(p.colors)} data-filter={p.filter}>
+      <div class="menu-item" data-colors={JSON.stringify(p.colors)} data-filter={p.filter} data-hero={p.hero}>
         <div class="color-circle" style={`background: linear-gradient(to right, ${p.colors[1]} 50%, ${p.colors[2]} 50%);`}></div>
         {p.name}
       </div>
@@ -30,21 +29,33 @@ const palettes = [
   const m = document.getElementById('palette-menu') as HTMLElement;
   let isDragging = false, offset = { x: 0, y: 0 };
 
-  const applyPalette = (colors: string[], filter: string) => {
+  const applyPalette = (colors: string[], filter: string, heroUrl: string) => {
+    // Widget itself
     w.style.backgroundColor = colors[0];
     w.style.boxShadow = `0 0 14px ${colors[2]}`;
     icon.style.filter = filter;
 
+    // Global theme variables
     document.documentElement.style.setProperty('--theme-bg', colors[0]);
     document.documentElement.style.setProperty('--theme-accent', colors[2]);
     document.documentElement.style.setProperty('--theme-active', colors[2] + 'BF');
+
+    // Hero & WebSolutions backgrounds
+    document.querySelectorAll('.hero-bg-container, .box-1, .box-3').forEach(el => {
+      (el as HTMLElement).style.backgroundImage = `url(${heroUrl})`;
+    });
+
+    // Filters
+    document.querySelectorAll('.hero-bg-filter, .apply-filter').forEach(el => {
+      (el as HTMLElement).style.filter = filter;
+    });
   };
 
-  // Load saved palette on init
+  // Restore on load
   const saved = localStorage.getItem('site-palette');
   if (saved) {
-    const { colors, filter } = JSON.parse(saved);
-    applyPalette(colors, filter);
+    const { colors, filter, hero } = JSON.parse(saved);
+    applyPalette(colors, filter || "none", hero || '');
   }
 
   m.addEventListener('click', (e) => {
@@ -52,9 +63,10 @@ const palettes = [
     if (item) {
       const colors = JSON.parse(item.getAttribute('data-colors')!);
       const filter = item.getAttribute('data-filter')!;
+      const heroUrl = item.getAttribute('data-hero')!;
       
-      applyPalette(colors, filter);
-      localStorage.setItem('site-palette', JSON.stringify({ colors, filter }));
+      applyPalette(colors, filter, heroUrl);
+      localStorage.setItem('site-palette', JSON.stringify({ colors, filter, hero: heroUrl }));
       
       m.classList.add('hidden');
     }

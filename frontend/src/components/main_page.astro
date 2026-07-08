@@ -7,10 +7,10 @@ import PaletteWidget from './Palette_widget.astro';
   <header class="header">
     <nav>
       <ul class="ul" id="nav-links">
-        <li class="li"><a href="/" class="nav-link">Home</a></li>
-        <li class="li"><a href="/about" class="nav-link">About</a></li>
-        <li class="li"><a href="/services" class="nav-link">Services</a></li>
-        <li class="li"><a href="/projects" class="nav-link">Our Projects</a></li>
+        <li class="li"><a href="/">Home</a></li>
+        <li class="li"><a href="/about">About</a></li>
+        <li class="li"><a href="/services">Services</a></li>
+        <li class="li"><a href="/projects">Our Projects</a></li>
       </ul>
     </nav>
   </header>
@@ -23,6 +23,7 @@ import PaletteWidget from './Palette_widget.astro';
     <div class="footer-container">
       <div class="footer-left">
         <img src={IMAGES.logo.src} alt="Company Logo" class="footer-logo" />
+        
         <p>Professional digital marketing solutions for businesses of all sizes. From website development to social media management, we help you grow your online presence.</p>
         <h3>CONTACT US</h3>
         <p>📞 +639 783 1987</p>
@@ -66,7 +67,10 @@ import PaletteWidget from './Palette_widget.astro';
   
   links.forEach(link => {
     if (link.getAttribute('href') === currentPath) {
-      link.classList.add('active');
+      const parent = link.parentElement;
+      if (parent) {
+        parent.classList.add('active');
+      }
     }
   });
 </script>
@@ -78,43 +82,122 @@ import PaletteWidget from './Palette_widget.astro';
     --theme-active: #FFBC85BF;
   }
 
-  .div { font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+  .div { font-family: 'Montserrat', 'Futura', 'Century Gothic', sans-serif; }
 
-  /* Navbar Styles */
-  .header { padding: 2rem 3rem; background-color: var(--theme-bg); position: sticky; top: 0; z-index: 100; display: flex; justify-content: center; }
-  .ul { list-style: none; display: flex; gap: 3rem; margin: 0; padding: 0; }
-  
-  .nav-link {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 1.25rem;
-    position: relative;
-    padding-bottom: 5px;
-    transition: color 0.3s ease;
+  .header { 
+    padding: 2rem 3rem; 
+    background-color: var(--theme-bg); 
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+    display: flex; 
+    justify-content: center; 
+
+    .ul { 
+      list-style: none; 
+      display: flex; 
+      gap: 2rem; 
+      margin: 0; 
+      padding: 0; 
+
+      .li {
+        position: relative;
+        padding: 10px 20px;
+        border-radius: 12px;
+        transition: all 0.4s ease;
+
+        a { 
+          text-decoration: none; 
+          color: var(--theme-accent); 
+          font-weight: 600; 
+          font-size: 20px;
+          transition: color 0.3s ease;
+        }
+
+        &.active {
+          background: var(--theme-active); 
+          backdrop-filter: blur(10px); 
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          overflow: hidden;
+          
+          a { color: #ffffff; }
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 200%; 
+            height: 100%;
+          
+            background: linear-gradient(
+              120deg, 
+              transparent 0%, 
+              rgba(255, 255, 255, 0) 30%, 
+              rgba(255, 255, 255, 0.5) 50%, 
+              rgba(255, 255, 255, 0) 70%, 
+              transparent 100%
+            );
+            animation: shine 6s infinite;
+          }
+        }
+      }
+    }
   }
 
-  /* Animated Underline Effect */
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--theme-accent);
-    transition: width 0.3s ease;
+  @keyframes shine {
+    100% { left: 100%; }
   }
 
-  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-  .nav-link:hover { color: var(--theme-accent); }
+  .footer { 
+    background: var(--theme-bg); 
+    color: #ffffff; 
+    padding: 4rem 2rem 2rem 2rem; 
+    margin-top: auto; 
 
-  /* Footer Styles */
-  .footer { background: var(--theme-bg); color: #ffffff; padding: 4rem 2rem 2rem 2rem; margin-top: auto; }
-  .footer-container { max-width: 1200px; margin: 0 auto; display: flex; gap: 4rem; margin-bottom: 3rem; }
-  .footer-left { flex: 0 0 30%; }
-  .footer-logo { display: block; width: 75px; height: auto; margin-bottom: 1rem; }
-  .footer-right { flex: 1; }
-  .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
-  .footer-bottom { text-align: center; border-top: 1px solid #333; padding-top: 2rem; }
+    .footer-container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      display: flex; 
+      flex-direction: row; 
+      gap: 4rem; 
+      margin-bottom: 3rem; 
+
+      .footer-left { 
+        flex: 0 0 30%; 
+
+        .footer-logo { 
+          display: block;
+          width: 75px;       
+          max-width: 100%;    
+          height: auto;       
+          margin-bottom: -1.5rem; 
+        }
+      }
+
+      .footer-right { 
+        flex: 0 0 70%; 
+
+        .footer-grid { 
+          display: grid; 
+          grid-template-columns: repeat(4, 1fr); 
+          gap: 1.5rem; 
+        }
+      }
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid #ffffff;
+      text-align: center;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    h3, h4 { color: var(--theme-accent); }
+    p { font-size: 0.85rem; line-height: 1.6; }
+    a { color: #ffffff; text-decoration: none; }
+  }
 </style>

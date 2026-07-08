@@ -9,13 +9,18 @@ import main_bg from '../assets/background/main_bg.jpg'
 import white_bg from '../assets/background/white_bg.jpg'
 //hero bakcgrounds with pallete
 import bg_bx1 from '../assets/background/hero/homebx1.avif';
-import bg_bx3 from '../assets/background/home_bx3.jpg';
 import hero_charcoalGrayBrightViolet from '../assets/background/hero/hero_charcoalgrayBrightViolet.jpg';
 import hero_darkSlateCoolGray from '../assets/background/hero/hero_darkslateCoolgray.jpg';
 import hero_deepBurgundySoftBlush from '../assets/background/hero/hero_deepburgundySoftblush.jpg';
 import hero_deepForestGreenWarmCream from '../assets/background/hero/hero_deepforestgreenWarmcream.jpg';
 import hero_midnightBlueElectricLime from '../assets/background/hero/hero_midnightblueElectrticlime.jpg';
-
+//web solution with palette
+import bg_bx3 from '../assets/background/websol/home_bx3.jpg';
+import websol_charcoalGrayDarkViolet from '../assets/background/websol/websol_charcoalgraydarkviolet.jpg';
+import websol_darkSlateCoolGray from '../assets/background/websol/websol_darkslatecoolgray.jpg';
+import websol_deepBurgundySoftBlush from '../assets/background/websol/websol_deepburgundysoftblush.jpg';
+import websol_deepForestGreenWarmCream from '../assets/background/websol/websol_deepforestgreenwarmcream.jpg';
+import websol_midnightBlueElectricLime from '../assets/background/websol/websol_midnightblueelectriclime.jpg';
 
 // Partners
 import aviethoImage from '../assets/partners/avietho.png';
@@ -136,7 +141,6 @@ import spec_vid from '../assets/imgs/spec_vid.jpg';
 
 export const IMAGES = {
   logo: logoImage,
-  heroBg3: bg_bx3,
   heroBg5: bg_bx5,
   teamBgbx4: team_bg_bx4,
   bg_bx6: bg_bx6,
@@ -149,6 +153,14 @@ export const IMAGES = {
     burgundyBlush: hero_deepBurgundySoftBlush,
     forestCream: hero_deepForestGreenWarmCream,
     midnightLime: hero_midnightBlueElectricLime,
+  },
+  websool: {
+    heroBg3: bg_bx3,
+    charcoalViolet: websol_charcoalGrayDarkViolet,
+    darkSlateGray: websol_darkSlateCoolGray,
+    burgundyBlush: websol_deepBurgundySoftBlush,
+    forestCream: websol_deepForestGreenWarmCream,
+    midnightLime: websol_midnightBlueElectricLime,
   },
   partners: [
     aviethoImage,

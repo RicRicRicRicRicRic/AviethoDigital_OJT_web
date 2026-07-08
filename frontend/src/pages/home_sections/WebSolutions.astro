@@ -22,11 +22,11 @@ import { IMAGES } from '../../data/assets.js';
   document.addEventListener('DOMContentLoaded', initBox3Slideshow);
 </script>
 
-<div class="box box-3" style={`background-image: url(${IMAGES.heroBg3.src});`}>
+<div class="box box-3" style={`background-image: url(${IMAGES.websool.heroBg3.src});`}>
   <div class="glass-overlay">
     <div class="column column-left">
       <h1>Complete Web Solutions</h1>
-      <p>From design to deployment, we provide comprehensive website development services that drive results.</p>
+      <p class="theme-text">From design to deployment, we provide comprehensive website development services that drive results.</p>
     </div>
     
     <div class="column column-middle">
@@ -84,6 +84,7 @@ import { IMAGES } from '../../data/assets.js';
     background-position: center;
     background-repeat: no-repeat;
     box-sizing: border-box;
+    transition: background-image 0.8s ease-in-out; /* Smooth background change from palette */
 
     .glass-overlay {
       width: 100%;
@@ -118,14 +119,17 @@ import { IMAGES } from '../../data/assets.js';
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
-        color: #ffaa66; 
+        color: var(--theme-accent, #ffaa66); 
         text-shadow: 0 0 15px rgba(255, 170, 102, 0.6);
+        transition: color 0.4s ease;
       }
-      p {
+
+      .theme-text {
         font-size: 1.1rem;
         line-height: 1.6;
-        color: #ffd1a3; 
+        color: var(--theme-accent, #ffd1a3); 
         font-weight: 500;
+        transition: color 0.4s ease;
       }
     }
 
@@ -246,7 +250,7 @@ import { IMAGES } from '../../data/assets.js';
         }
 
         &.active {
-          background: linear-gradient(135deg, #ff7b00 0%, #ffaa66 100%);
+          background: linear-gradient(135deg, var(--theme-accent, #ff7b00) 0%, #ffaa66 100%);
           border-color: transparent;
           box-shadow: 0 0 20px rgba(255, 123, 0, 0.4);
           span {
