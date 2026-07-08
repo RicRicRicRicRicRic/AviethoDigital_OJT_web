@@ -1,12 +1,21 @@
 // src/data/assets.js
 import logoImage from '../assets/logo/ad_logo.png';
-import bg_bx1 from '../assets/background/homebx1.avif';
-import bg_bx3 from '../assets/background/home_bx3.jpg';
 import bg_bx5 from '../assets/imgs/fb_page.png';
+
+//backgrounds
 import team_bg_bx4 from '../assets/background/team_bg.jpg';
 import bg_bx6 from '../assets/background/bg_box6.png';
 import main_bg from '../assets/background/main_bg.jpg'
 import white_bg from '../assets/background/white_bg.jpg'
+//hero bakcgrounds with pallete
+import bg_bx1 from '../assets/background/hero/homebx1.avif';
+import bg_bx3 from '../assets/background/home_bx3.jpg';
+import hero_charcoalGrayBrightViolet from '../assets/background/hero/hero_charcoalgrayBrightViolet.jpg';
+import hero_darkSlateCoolGray from '../assets/background/hero/hero_darkslateCoolgray.jpg';
+import hero_deepBurgundySoftBlush from '../assets/background/hero/hero_deepburgundySoftblush.jpg';
+import hero_deepForestGreenWarmCream from '../assets/background/hero/hero_deepforestgreenWarmcream.jpg';
+import hero_midnightBlueElectricLime from '../assets/background/hero/hero_midnightblueElectrticlime.jpg';
+
 
 // Partners
 import aviethoImage from '../assets/partners/avietho.png';
@@ -61,7 +70,6 @@ import icon_spec_info from '../assets/icon/icon_spec_info.png'
 import icon_spec_seo from '../assets/icon/icon_spec_seo.png'
 import paletteIcon from '../assets/icon/palette_icon.png'
 
-
 //sliders
 import s1 from '../assets/imgs/slide1.jpg';
 import s2 from '../assets/imgs/slide2.jpg';
@@ -81,7 +89,6 @@ import serv_if from '../assets/imgs/serv_influencer_marketing.jpg';
 import serv_om from '../assets/imgs/serv_online_media.jpg';
 import serv_rm from '../assets/imgs/serv_reputation_management.jpg';
 import serv_smPR from '../assets/imgs/serv_social_mediaPR.jpg'
-
 
 //projects
 import digital_pr from '../assets/imgs/digital_pr.jpg';
@@ -129,13 +136,20 @@ import spec_vid from '../assets/imgs/spec_vid.jpg';
 
 export const IMAGES = {
   logo: logoImage,
-  heroBg: bg_bx1,
   heroBg3: bg_bx3,
   heroBg5: bg_bx5,
   teamBgbx4: team_bg_bx4,
   bg_bx6: bg_bx6,
   main_bg: main_bg,
   white_bg: white_bg,
+  hero: {
+    heroBg: bg_bx1,
+    charcoalViolet: hero_charcoalGrayBrightViolet,
+    darkSlateGray: hero_darkSlateCoolGray,
+    burgundyBlush: hero_deepBurgundySoftBlush,
+    forestCream: hero_deepForestGreenWarmCream,
+    midnightLime: hero_midnightBlueElectricLime,
+  },
   partners: [
     aviethoImage,
     cupangImage,
